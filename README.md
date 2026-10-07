@@ -2,9 +2,6 @@
 
 Interface web do Projeto Integrador TeaSaude, voltado à busca e ao agendamento de atendimentos para crianças e adolescentes neurodivergentes ou em avaliação, em instituições privadas.
 
-**Este README registra o estado atual do frontend do TeaSaude.**
-A documentação deve ser atualizada conforme novas etapas forem implementadas
-e verificadas.
 ## Repositório
 
 * [Backend](https://github.com/Erik-GSouza/teasaude-backend)
@@ -22,7 +19,7 @@ No MVP, um adulto utiliza uma conta vinculada a um paciente. O público contempl
 * JavaScript
 * Bootstrap Icons
 * Comunicação com uma API REST em Node.js e Express
-* Banco MongoDB com Mongoose no backend
+* Banco MongoDB/Mongoose no backend
 
 ## Perfis e funcionalidades planejadas
 
@@ -50,12 +47,58 @@ No MVP, um adulto utiliza uma conta vinculada a um paciente. O público contempl
 
 ## Estrutura atual
 
-| Caminho | Finalidade |
-| --- | --- |
-| `README.md` | Documentação do repositório. |
-| `index.html` | Entrada atual da aplicação. |
-| `src/css/styles.css` | Estilos, responsividade e identidade visual da aplicação. |
-| `src/js/main.js` | Comportamentos JavaScript da aplicação. |
+```text
+teasaude-frontend/
+├── index.html
+├── README.md
+│
+└── src/
+    ├── css/
+    │   ├── base.css
+    │   ├── layout.css
+    │   │
+    │   ├── auth/
+    │   │   ├── login.css
+    │   │   └── criar-conta.css
+    │   │
+    │   ├── paciente/
+    │   │   └── cadastro.css
+    │   │
+    │   ├── gestor/
+    │   │   └── solicitacoes.css
+    │   │
+    │   └── admin/
+    │       └── administracao.css
+    │
+    ├── js/
+    │   ├── layout.js
+    │   │
+    │   ├── auth/
+    │   │   ├── login.js
+    │   │   └── criar-conta.js
+    │   │
+    │   ├── paciente/
+    │   │   └── cadastro.js
+    │   │
+    │   ├── gestor/
+    │   │   └── solicitacoes.js
+    │   │
+    │   └── admin/
+    │       └── administracao.js
+    │
+    └── pages/
+        ├── auth/
+        │   └── criar-conta.html
+        │
+        ├── paciente/
+        │   └── cadastro.html
+        │
+        ├── gestor/
+        │   └── solicitacoes.html
+        │
+        └── admin/
+            └── administracao.html
+```
 
 Acrescentar `src/pages/` quando houver outras páginas. `src/services/` para comunicação com a API. `src/assets/` para imagens e ícones.
 
@@ -63,3 +106,5 @@ Acrescentar `src/pages/` quando houver outras páginas. `src/services/` para com
 | -------------------- | ------------------------ |
 | Frontend             | Erik, Hállefe e Matheus  | 
 | Backend/banco        | Alison, Bárbara e Cid    |
+
+
