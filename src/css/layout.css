@@ -1,0 +1,178 @@
+.aplicacao {
+    display: flex;
+    min-height: 100vh;
+}
+
+.navegacao-app {
+    width: 280px;
+    min-height: 100vh;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-right: 1px solid #dbe3ea;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+}
+
+.rodape-sidebar {
+    margin-top: auto;
+    padding-top: 2rem;
+}
+
+.pagina {
+    flex: 1;
+    min-width: 0;
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.marca-icone {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.65rem;
+    background-color: #14857b;
+    color: #ffffff;
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.marca-nome {
+    color: #172033;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.marca-nome span {
+    color: #14857b;
+}
+
+/* Navegação */
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.item-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.9rem 1rem;
+    border-radius: 0.65rem;
+    color: #172033;
+    font-size: 0.95rem;
+}
+
+.item-menu i {
+    width: 1.25rem;
+    flex-shrink: 0;
+    font-size: 1.15rem;
+    text-align: center;
+}
+
+.item-menu.ativo {
+    background-color: #14857b;
+    color: #ffffff;
+}
+
+.item-menu.indisponivel {
+    color: #667085;
+}
+
+.texto-item-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.texto-item-menu small {
+    color: #98a2b3;
+    font-size: 0.7rem;
+}
+
+@media (max-width: 768px) {
+
+    .aplicacao {
+        display: block;
+    }
+
+    .navegacao-app {
+    width: auto;
+    min-height: auto;
+
+    position: fixed;        
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding:
+        0.5rem
+        0.75rem
+        calc(0.5rem + env(safe-area-inset-bottom));
+    border-right: none;
+    border-top: 1px solid #dbe3ea;
+    box-sizing: border-box;
+
+    z-index: 1000;
+    }   
+
+    .marca {
+        display: none;
+    }
+
+    .rodape-sidebar {
+        display: none;
+    }
+
+    .menu {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0.25rem;
+    }
+
+    .item-menu {
+        flex: 1;
+        min-width: 0;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.25rem;
+        padding: 0.6rem 0.35rem;
+        font-size: 0.75rem;
+        line-height: 1.15;
+        text-align: center;
+    }
+
+    .item-menu > span {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    }  
+
+    .item-menu i {
+        width: auto;
+        font-size: 1.2rem;
+    }
+
+    .texto-item-menu {
+        display: block;
+    }
+
+    .texto-item-menu small {
+        display: none;
+    }
+
+    .pagina {
+        padding-bottom: 7rem;
+    }
+}

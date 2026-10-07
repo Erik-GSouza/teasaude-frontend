@@ -2,8 +2,9 @@
 
 Interface web do Projeto Integrador TeaSaude, voltado à busca e ao agendamento de atendimentos para crianças e adolescentes neurodivergentes ou em avaliação, em instituições privadas.
 
-**Este README descreve o trabalho planejado para a interface.** sua implementação e integração ainda não foram verificadas. Atualizar o estágio e os itens concluídos conforme o desenvolvimento real.
-
+**Este README registra o estado atual do frontend do TeaSaude.**
+A documentação deve ser atualizada conforme novas etapas forem implementadas
+e verificadas.
 ## Repositório
 
 * [Backend](https://github.com/Erik-GSouza/teasaude-backend)
@@ -14,24 +15,23 @@ Reunir opções de atendimento, informações sobre planos aceitos fornecidas pe
 
 No MVP, um adulto utiliza uma conta vinculada a um paciente. O público contempla crianças e adolescentes, do nascimento até os 17 anos. O nome TeaSaude é provisório e não restringe o público somente a pessoas com TEA.
 
-## Tecnologias previstas
+## Tecnologias
 
 * HTML
-* CSS próprio
-* JavaScript puro
-* Bootstrap via CDN
+* CSS
+* JavaScript
+* Bootstrap Icons
 * Comunicação com uma API REST em Node.js e Express
 * Banco MongoDB com Mongoose no backend
 
-O Bootstrap será utilizado para auxiliar na organização das páginas, responsividade, formulários, botões e componentes visuais básicos.
-
 ## Perfis e funcionalidades planejadas
 
-| Perfil       | Participação no MVP                                                                                                       |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------- |
-| Paciente     | Conta operada pelo adulto; cadastro, consulta de atendimentos, solicitações e acompanhamento dos próprios agendamentos.   |
-| Gestor       | Administração dos dados, profissionais, serviços, planos aceitos, disponibilidades e solicitações da própria instituição. |
-| Profissional | Registro vinculado à instituição e aos atendimentos, inicialmente sem login próprio.                                      |
+| Perfil | Participação no MVP |
+| --- | --- |
+| Paciente/responsável | Adulto opera uma conta vinculada a um único paciente. Consulta seus dados, atendimentos, solicitações e agendamentos. |
+| Gestor | Administra dados e operações relacionadas à própria instituição, conforme as permissões disponibilizadas pela API. |
+| Admin | Administração global do sistema conforme as permissões disponibilizadas pela API. |
+| Profissional | Registro vinculado à instituição e aos atendimentos, sem login próprio neste recorte. |                                  |
 
 ## Regras de funcionamento aceitas
 
@@ -48,16 +48,14 @@ O Bootstrap será utilizado para auxiliar na organização das páginas, respons
 * Primeira avaliação pode ser buscada e solicitada sem um laudo previamente cadastrado.
 * Planos aceitos são informações mantidas pelo gestor; sua exibição não confirma cobertura individual.
 
-## Estrutura proposta
+## Estrutura atual
 
-Criar primeiro os quatro arquivos abaixo, após conferir o conteúdo atual do repositório.
-
-| Caminho              | Finalidade                                                   |
-| -------------------- | ------------------------------------------------------------ |
-| `README.md`          | Documentação do repositório.                                 |
-| `index.html`         | Página inicial de trabalho com o formulário de Paciente.     |
-| `src/css/styles.css` | Cores, ajustes visuais próprios e complementos ao Bootstrap. |
-| `src/js/main.js`     | Comportamento da página e validações da interface.           |
+| Caminho | Finalidade |
+| --- | --- |
+| `README.md` | Documentação do repositório. |
+| `index.html` | Entrada atual da aplicação. |
+| `src/css/styles.css` | Estilos, responsividade e identidade visual da aplicação. |
+| `src/js/main.js` | Comportamentos JavaScript da aplicação. |
 
 Acrescentar `src/pages/` quando houver outras páginas. `src/services/` para comunicação com a API. `src/assets/` para imagens e ícones.
 

@@ -1,0 +1,57 @@
+.formulario-paciente {
+    margin-top: 1.5rem;
+    padding: 2rem;
+    background-color: #ffffff;
+    border: 1px solid #dbe3ea;
+    border-radius: 0.75rem;
+}
+
+.grupo-formulario {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+.descricao-grupo h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.descricao-grupo p {
+    margin: 0;
+    color: #5f6b7a;
+    line-height: 1.5;
+}
+
+.campos-grupo {
+    min-width: 0;
+}
+
+.linha-campos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.divisor-formulario {
+    margin: 2rem 0;
+    border: 0;
+    border-top: 1px solid #dbe3ea;
+}
+
+@media (max-width: 768px) {
+
+    .formulario-paciente {
+        padding: 1.25rem;
+    }
+    .grupo-formulario {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .linha-campos {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}

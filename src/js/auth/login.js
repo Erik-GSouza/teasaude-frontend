@@ -1,0 +1,1 @@
+// Comportamentos de autenticação serão implementados após definição do contrato da API.
