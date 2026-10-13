@@ -1,0 +1,68 @@
+.det-voltar {
+    display: inline-flex; align-items: center; gap: 6px; margin-bottom: 20px;
+    color: #0f766e; font-size: .9rem; font-weight: 600; text-decoration: none;
+}
+.det-titulo { font-size: 2rem; margin: 0 0 24px; }
+
+.det-grade {
+    display: grid; grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 24px; align-items: start;
+}
+.det-coluna { display: flex; flex-direction: column; gap: 24px; }
+
+.det-cartao {
+    padding: 24px; background: #fff;
+    border: 1px solid #e5e7eb; border-radius: 12px;
+}
+.det-cartao-titulo { margin: 0 0 16px; font-size: 1rem; }
+.det-icone { color: #0f766e; margin-right: 6px; }
+
+.det-principal-topo {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 16px; margin-bottom: 20px;
+}
+.det-instituicao { margin: 0 0 4px; font-size: .85rem; color: #6b7280; }
+.det-atendimento { margin: 0; font-size: 1.2rem; }
+
+.det-dados { margin: 0; display: grid; gap: 14px; }
+.det-dado { display: grid; grid-template-columns: 180px 1fr; gap: 16px; }
+.det-dado dt { font-size: .9rem; color: #6b7280; }
+.det-dado dd { margin: 0; color: #111827; }
+
+.det-selo {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 12px; border-radius: 999px; font-size: .9rem; font-weight: 600;
+}
+.det-selo-pendente { background: #fef9c3; border: 1px solid #facc15; color: #854d0e; }
+
+.det-orientacao { margin: 0 0 8px; color: #111827; }
+.det-aviso {
+    display: flex; gap: 8px; margin: 0;
+    font-size: .9rem; color: #6b7280;
+}
+
+.det-linha-tempo {
+    list-style: none; margin: 0; padding: 0 0 0 16px;
+    border-left: 2px solid #e5e7eb;
+}
+.det-evento-topo { display: flex; align-items: center; gap: 12px; margin: 0 0 6px; }
+.det-evento-data { font-size: .9rem; color: #4b5563; }
+.det-evento-autor { margin: 0; font-size: .9rem; color: #6b7280; }
+
+.det-acoes { display: flex; flex-direction: column; gap: 10px; }
+.det-botao {
+    width: 100%; padding: 12px 16px; border-radius: 8px;
+    font: inherit; font-weight: 600; cursor: pointer;
+}
+.det-botao-principal { background: #0f766e; border: 1px solid #0f766e; color: #fff; }
+.det-botao-perigo { background: #fff; border: 1px solid #fca5a5; color: #b91c1c; }
+.det-botao:disabled { opacity: .65; cursor: not-allowed; }
+
+.det-contato { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; color: #111827; }
+
+@media (max-width: 900px) {
+    .det-grade { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+    .det-dado { grid-template-columns: 1fr; gap: 2px; }
+}
