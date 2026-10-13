@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head> 
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Disponibilidades | TeaSaude</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/gestor/solicitacoes.css">
+    <link rel="stylesheet" href="../../css/layout.css">
+    <link rel="stylesheet" href="../../css/gestor/disponibilidades.css">
+</head>
+
+<body>
+
+    <div class="aplicacao">
+
+        <aside
+            id="navegacaoApp"
+            class="navegacao-app"
+            data-perfil="gestor"
+            data-item-ativo="solicitacoes"
+            data-item-ativo="disponibilidades"
+        ></aside>
+
+                 <main class="pagina">
+
+            <header class="disp-cabecalho">
+                <div>
+                    <h1 class="disp-titulo">Disponibilidades</h1>
+                    <p class="disp-subtitulo">Clínica Exemplo · cada horário é uma única sessão, com uma vaga.</p>
+                </div>
+                <button class="disp-botao-principal" type="button" disabled title="Indisponível nesta etapa">
+                    <i class="bi bi-plus-lg"></i> Adicionar horário
+                </button>
+            </header>
+
+            <section class="disp-secao" aria-labelledby="titulo-horarios">
+                <h2 id="titulo-horarios">Próximos horários <span class="disp-contador">(2)</span></h2>
+
+                <ul class="disp-lista">
+                    <li class="disp-item">
+                        <div class="disp-item-texto">
+                            <p class="disp-item-titulo">Quarta-Feira, 28/10/2026, 08:00–09:00</p>
+                            <p class="disp-item-detalhe">Primeira avaliação em Fonoaudiologia · Ana Exemplo</p>
+                        </div>
+                        <span class="disp-selo disp-selo-pendente"><i class="bi bi-clock"></i> Pendente</span>
+                        <i class="bi bi-chevron-right disp-seta"></i>
+                    </li>
+                    <li class="disp-item">
+                        <div class="disp-item-texto">
+                            <p class="disp-item-titulo">Quinta-Feira, 29/10/2026, 10:00–11:00</p>
+                            <p class="disp-item-detalhe">Primeira avaliação em Fonoaudiologia · Ana Exemplo</p>
+                        </div>
+                        <span class="disp-selo disp-selo-livre">Livre · editar</span>
+                        <i class="bi bi-chevron-right disp-seta"></i>
+                    </li>
+                </ul>
+
+                <p class="disp-nota">Horários livres abrem para edição ou remoção. Horários ocupados abrem a solicitação correspondente.</p>
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="../../js/layout.js"></script>
+    <script src="../../js/gestor/solicitacoes.js"></script>
+    <script src="../../js/gestor/disponibilidades.js"></script>
+
+</body>
+
+</html>
