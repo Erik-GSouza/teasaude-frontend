@@ -163,6 +163,18 @@
     opacity: 0.8;
 }
 
+.atalho-busca {
+    text-decoration: none;
+    cursor: pointer;
+}
+.atalho-busca:hover {
+    background-color: #0d655d;
+}
+.atalho-busca:focus-visible {
+    outline: 3px solid rgba(20, 133, 123, 0.4);
+    outline-offset: 3px;
+}
+
 
 @media (max-width: 900px) {
     .painel-inicio {

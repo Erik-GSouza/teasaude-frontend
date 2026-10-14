@@ -135,6 +135,19 @@
     display: none;
 }
 
+.item-menu[href] {
+    text-decoration: none;
+    cursor: pointer;
+}
+.item-menu[href]:not(.ativo):hover {
+    background-color: #eefaf7;
+    color: #117a72;
+}
+.item-menu[href]:focus-visible {
+    outline: 3px solid rgba(20, 133, 123, 0.35);
+    outline-offset: 2px;
+}
+
 @media (max-width: 768px) {
 
     .aplicacao {
