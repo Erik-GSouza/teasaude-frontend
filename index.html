@@ -16,32 +16,82 @@
 
     <link rel="stylesheet" href="./src/css/base.css">
     <link rel="stylesheet" href="./src/css/auth/login.css">
+    <link rel="manifest" href="./manifest.webmanifest">
+    <meta name="theme-color" content="#117A72">
 </head>
 
 <body>
 
-    <main class="pagina">
+    <section class="conteudo login-conteudo">
 
-        <section class="conteudo">
+        <header class="cabecalho-pagina">
+            <h1 class="titulo">Entrar no TeaSaude</h1>
 
-            <header class="cabecalho-pagina">
-                <h1 class="titulo">
-                    Entrar no TeaSaude
-                </h1>
+            <p class="subtitulo">
+                Acesse sua conta para utilizar os serviços do TeaSaude.
+            </p>
+        </header>
 
-                <p class="subtitulo">
-                    Acesso para Paciente/responsável, Gestor e Admin.
-                </p>
-            </header>
+        <form id="formLogin" class="formulario-login" novalidate>
 
-            <div class="aviso" role="status">
-                A autenticação ainda não está implementada.
+            <div class="campo">
+                <label for="nomeUsuario">
+                    Nome de usuário
+                </label>
+
+                <input
+                    type="text"
+                    id="nomeUsuario"
+                    name="nomeUsuario"
+                    autocomplete="username"
+                    required
+                >
             </div>
 
-        </section>
+            <div class="campo">
+                <label for="senha">
+                    Senha
+                </label>
 
-    </main>
+                <input
+                    type="password"
+                    id="senha"
+                    name="senha"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
 
+            <div class="acoes-formulario">
+                <button
+                    type="submit"
+                    class="botao-primario"
+                    id="botaoEntrar"
+                >
+                    Entrar
+                </button>
+            </div>
+
+            <p
+                id="mensagemLogin"
+                class="mensagem-formulario"
+                role="status"
+                aria-live="polite"
+            >
+            </p>
+
+        </form>
+
+        <p class="link-criar-conta">
+            Ainda não possui uma conta?
+            <a href="./src/pages/auth/criar-conta.html">
+                Criar conta
+            </a>
+        </p>
+
+    </section>
+    <script src="./src/js/api.js"></script>
+    <script src="./src/js/auth/sessao.js"></script>
     <script src="./src/js/auth/login.js"></script>
 
 </body>

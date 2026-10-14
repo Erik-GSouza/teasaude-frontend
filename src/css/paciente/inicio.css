@@ -1,0 +1,191 @@
+.inicio-conteudo {
+    max-width: 1080px;
+}
+
+.cabecalho-inicio {
+    margin-bottom: 2rem;
+}
+
+.cabecalho-inicio h1 {
+    margin: 0 0 0.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #172033;
+}
+
+.cabecalho-inicio p {
+    margin: 0;
+    color: #5f6b7a;
+    line-height: 1.5;
+}
+
+.cartao-proximos {
+    width: 100%;
+    padding: 1.75rem;
+    background: #fff;
+    border: 1px solid #dbe3ea;
+    border-radius: 0.75rem;
+}
+
+.cartao-proximos h2 {
+    margin: 0 0 1.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #172033;
+}
+
+.estado-proximos {
+    min-height: 290px;
+    padding: 2rem 1.5rem;
+    border: 1px dashed #c8d4df;
+    border-radius: 0.625rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.icone-proximos {
+    width: 54px;
+    height: 54px;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eefaf7;
+    color: #117a72;
+    border-radius: 50%;
+    font-size: 1.4rem;
+}
+
+.estado-proximos h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #172033;
+}
+
+.estado-proximos p {
+    margin: 0;
+    max-width: 440px;
+    color: #5f6b7a;
+    line-height: 1.5;
+}
+
+/* Organização da página */
+.painel-inicio {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+/*colunas */
+.atalhos-inicio {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 0.75rem;
+}
+
+/* estilos compartilhados dos dois cards */
+.atalho-inicio {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 0;
+    padding: 1.5rem;
+    border: 1px solid #dbe3ea;
+    border-radius: 0.75rem;
+    background: #fff;
+}
+
+.icone-atalho {
+    font-size: 1.4rem;
+}
+
+.texto-atalho {
+    flex: 1;
+    min-width: 0;
+}
+
+.texto-atalho h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.texto-atalho p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.seta-atalho {
+    font-size: 1.3rem;
+}
+
+.atalho-busca {
+    min-height: 100px;
+
+    background: #117a72;
+    border-color: #117a72;
+    color: #fff;
+}
+
+.atalho-busca p {
+    color: #e0f2ef;
+}
+
+
+.atalho-agendamentos {
+    min-height: 220px;
+    color: #172033;
+}
+
+.atalho-agendamentos p {
+    color: #5f6b7a;
+}
+
+.atalho-agendamentos .icone-atalho {
+    color: #117a72;
+}
+
+.atalho-agendamentos .seta-atalho {
+    color: #94a3b8;
+    font-size: 4rem;
+}
+
+.estado-atalho {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+
+@media (max-width: 900px) {
+    .painel-inicio {
+        grid-template-columns: 1fr;
+    }
+
+    .atalho-agendamentos {
+        min-height: 150px;
+    }
+}
+
+@media (max-width: 768px) {
+    .atalho-inicio {
+        padding: 1.25rem;
+    }
+
+    .atalho-agendamentos .seta-atalho {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .cabecalho-inicio h1 {
+        font-size: 1.75rem;
+    }
+}

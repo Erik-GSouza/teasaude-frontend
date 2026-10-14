@@ -106,5 +106,3 @@ Acrescentar `src/pages/` quando houver outras páginas. `src/services/` para com
 | -------------------- | ------------------------ |
 | Frontend             | Erik, Hállefe e Matheus  | 
 | Backend/banco        | Alison, Bárbara e Cid    |
-
-

@@ -1,1 +1,133 @@
-/* Estilos específicos da tela inicial do Admin. */
+.pacientes-admin {
+    max-width: 900px;
+}
+
+.pacientes-admin h2 {
+    margin: 0 0 1rem;
+    font-size: 1.25rem;
+    color: #172033;
+}
+
+.lista-pacientes {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.lista-pacientes[hidden] {
+    display: none;
+}
+
+.item-paciente {
+    padding: 1.25rem;
+    background: #fff;
+    border: 1px solid #dbe3ea;
+    border-radius: 0.625rem;
+}
+
+.item-paciente h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    color: #172033;
+}
+
+.item-paciente p {
+    margin: 0;
+    color: #5f6b7a;
+    font-size: 0.9rem;
+}
+
+/*consulta individual*/
+
+.botao-consultar {
+    margin-top: 1rem;
+    padding: 0.65rem 1rem;
+    border: 1px solid #117a72;
+    border-radius: 0.5rem;
+    background: #117a72;
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+}
+
+.botao-consultar:hover {
+    background: #0d655f;
+}
+
+.botao-consultar:focus-visible {
+    outline: 3px solid rgba(17, 122, 114, 0.25);
+    outline-offset: 3px;
+}
+
+.painel-paciente {
+    max-width: 900px;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid #dbe3ea;
+    border-radius: 0.75rem;
+}
+
+.painel-paciente[hidden],
+.dados-paciente[hidden] {
+    display: none;
+}
+
+.painel-paciente h2 {
+    margin: 0 0 1.5rem;
+    font-size: 1.25rem;
+}
+
+.dados-paciente {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin: 0;
+}
+
+.dados-paciente dt {
+    margin-bottom: 0.4rem;
+    color: #5f6b7a;
+    font-size: 0.875rem;
+}
+
+.dados-paciente dd {
+    margin: 0;
+    color: #172033;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+/*form de edicao */
+
+.formulario-edicao {
+    margin-top: 1.5rem;
+}
+
+.formulario-edicao[hidden],
+.botao-consultar[hidden] {
+    display: none;
+}
+
+.formulario-edicao h3 {
+    margin: 0 0 1.5rem;
+    color: #172033;
+    font-size: 1.1rem;
+}
+
+.formulario-edicao .campo {
+    margin-bottom: 1rem;
+}
+
+#mensagemEdicao {
+    color: #5f6b7a;
+    line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+    .dados-paciente {
+        grid-template-columns: 1fr;
+    }
+}

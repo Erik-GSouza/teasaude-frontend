@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Início | TeaSaude</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/paciente/inicio.css">
+    <link rel="stylesheet" href="../../css/layout.css">
+    <link rel="manifest" href="../../../manifest.webmanifest">
+    <meta name="theme-color" content="#117A72">
+</head>
+
+<body>
+
+    <p id="avisoSessao" role="status">
+        Verificando sessão...
+    </p>
+
+    <div class="aplicacao" style="visibility: hidden;"> <!-- so pra n mostrar a tela antes do auth -->
+
+        <aside
+            id="navegacaoApp"
+            class="navegacao-app"
+            data-perfil="paciente"
+            data-item-ativo="inicio"
+        ></aside>
+
+        <main class="pagina">
+
+            <section class="conteudo inicio-conteudo">
+
+                <header class="cabecalho-pagina">
+                    <h1 class="titulo">Olá!</h1>
+
+                    <p class="subtitulo">
+                        Acompanhe os atendimentos e serviços disponíveis para o paciente vinculado à sua conta.
+                    </p>
+                </header>
+
+                <div class="painel-inicio">
+            
+                    <article class="cartao-proximos">
+
+                        <h2>Próxima solicitação ou atendimento</h2>
+
+                        <div class="estado-proximos">
+
+                            <span class="icone-proximos" aria-hidden="true">
+                                <i class="bi bi-calendar-event"></i>
+                            </span>
+
+                            <h3>Informações ainda não disponíveis</h3>
+
+                            <p>
+                                Suas próximas solicitações e atendimentos
+                                aparecerão aqui quando o sistema estiver integrado.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                    <!-- Cards laterais -->
+                    <div class="atalhos-inicio">
+
+
+                        <article class="atalho-inicio atalho-busca">
+
+                            <span class="icone-atalho" aria-hidden="true">
+                                <i class="bi bi-search"></i>
+                            </span>
+
+                            <div class="texto-atalho">
+                                <h2>Buscar atendimento</h2>
+                                <p>Serviços e horários disponíveis</p>
+                                <span class="estado-atalho">Em desenvolvimento</span>
+                            </div>
+
+                            <i class="bi bi-chevron-right seta-atalho"
+                            aria-hidden="true"></i>
+
+                        </article>
+         
+                        <article class="atalho-inicio atalho-agendamentos">
+
+                            <span class="icone-atalho" aria-hidden="true">
+                                <i class="bi bi-calendar3"></i>
+                            </span>
+
+                            <div class="texto-atalho">
+                                <h2>Meus agendamentos</h2>
+                                <p>Solicitações e histórico</p>
+                                <span class="estado-atalho">Em desenvolvimento</span>
+                            </div>
+
+                            <i class="bi bi-chevron-right seta-atalho"
+                            aria-hidden="true"></i>
+
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="../../js/api.js"></script>
+    <script src="../../js/auth/sessao.js"></script>
+    <script src="../../js/auth/proteger-pagina.js"></script>
+    <script src="../../js/layout.js"></script>
+
+</body>
+
+</html>

@@ -1,1 +1,45 @@
-/* Estilos próprios das páginas públicas de autenticação. */
+
+
+.login-conteudo {
+    max-width: 480px;
+}
+
+.formulario-login {
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid #dbe3ea;
+    border-radius: 0.75rem;
+}
+
+.formulario-login .acoes-formulario {
+    margin-top: 1.5rem;
+}
+
+.formulario-login .botao-primario {
+    width: 100%;
+}
+
+.link-criar-conta {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: #5f6b7a;
+}
+
+.link-criar-conta a {
+    color: #117a72;
+    font-weight: 600;
+}
+
+.login-erro {
+    color: #b02a37;
+}
+
+.login-sucesso {
+    color: #055160;
+}
+
+@media (max-width: 768px) {
+    .formulario-login {
+        padding: 1.25rem;
+    }
+}
