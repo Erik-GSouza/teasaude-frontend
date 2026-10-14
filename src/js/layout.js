@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     const navegacaoApp = document.querySelector("#navegacaoApp");
 
-    if (!navegacaoApp) {return;}
+    if (!navegacaoApp) {
+        return;
+    }
 
     const perfil = navegacaoApp.dataset.perfil;
     const itemAtivo = navegacaoApp.dataset.itemAtivo;
@@ -11,12 +13,14 @@ document.addEventListener("DOMContentLoaded", function () {
             {
                 id: "inicio",
                 texto: "Início",
-                icone: "bi-house"
+                icone: "bi-house",
+                href: "./inicio.html"
             },
             {
                 id: "buscar",
                 texto: "Buscar atendimento",
-                icone: "bi-search"
+                icone: "bi-search",
+                href: "./buscar.html"
             },
             {
                 id: "agendamentos",
@@ -26,33 +30,36 @@ document.addEventListener("DOMContentLoaded", function () {
             {
                 id: "cadastro",
                 texto: "Meu cadastro",
-                icone: "bi-person"
+                icone: "bi-person",
+                href: "./cadastro.html"
             }
         ],
-
         gestor: [
             {
                 id: "solicitacoes",
                 texto: "Solicitações e agenda",
-                icone: "bi-calendar-check"
+                icone: "bi-calendar-check",
+                href: "./solicitacoes.html"
             },
             {
                 id: "disponibilidades",
                 texto: "Disponibilidades",
-                icone: "bi-clock"
+                icone: "bi-clock",
+                href: "./disponibilidades.html"
             },
             {
                 id: "cadastros",
                 texto: "Cadastros da instituição",
-                icone: "bi-building"
+                icone: "bi-building",
+                href: "./cadastros.html"
             }
         ],
-
         admin: [
             {
                 id: "administracao",
                 texto: "Administração",
-                icone: "bi-shield-lock"
+                icone: "bi-shield-lock",
+                href: "./administracao.html"
             },
             {
                 id: "usuarios",
@@ -82,16 +89,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const itensMenu = menuPerfil.map(function (item) {
         const ativo = item.id === itemAtivo;
 
-        if (ativo) {
+        if (item.href) {
+            const classeAtiva = ativo ? " ativo" : "";
+            const paginaAtual = ativo ? ' aria-current="page"' : "";
+
             return `
-                <span
-                    class="item-menu ativo"
-                    aria-current="page"
+                <a
+                    class="item-menu${classeAtiva}"
+                    href="${item.href}"${paginaAtual}
                 >
                     <i class="bi ${item.icone}" aria-hidden="true"></i>
-
                     <span>${item.texto}</span>
-                </span>
+                </a>
             `;
         }
 
@@ -101,7 +110,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 aria-disabled="true"
             >
                 <i class="bi ${item.icone}" aria-hidden="true"></i>
-
                 <span class="texto-item-menu">
                     <span>${item.texto}</span>
                     <small>Em desenvolvimento</small>
@@ -136,14 +144,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const cabecalhoMobile = document.createElement("header");
     cabecalhoMobile.className = "cabecalho-mobile";
 
-    // reaproveita a marca da sidebar
+    //reaproveita a marca da sidebar no topbar mobile
     const marcaMobile = navegacaoApp.querySelector(".marca").cloneNode(true);
 
-    // cria o botao sair do mobile
     const botaoSairMobile = document.createElement("button");
     botaoSairMobile.type = "button";
     botaoSairMobile.className = "botao-sair botao-sair-mobile";
-
     botaoSairMobile.innerHTML = `
         <i class="bi bi-box-arrow-left" aria-hidden="true"></i>
         <span>Sair</span>
@@ -152,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
     cabecalhoMobile.append(marcaMobile, botaoSairMobile);
     navegacaoApp.before(cabecalhoMobile);
 
-    // conecta os dois botoes a mesma funçao
+    //2 botoes de sair mantem o comportamento
     document.querySelectorAll(".botao-sair").forEach(function (botao) {
         botao.addEventListener("click", encerrarSessao);
     });
