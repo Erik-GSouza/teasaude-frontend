@@ -1,1 +1,62 @@
-/* Estilos específicos da tela de solicitações e agenda do Gestor. */
+/* Estilos específicos da tela de solicitações e agenda do Gestor. */.sol-cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.sol-titulo { font-size: 2rem; margin: 0; }
+.sol-instituicao { color: #6b7280; margin: 4px 0 0; }
+
+.sol-botao-contorno {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 20px;
+  border: 1px solid #e5e7eb; border-radius: 10px;
+  background: #fff; color: #111827; text-decoration: none;
+}
+
+.sol-secao { margin-bottom: 40px; }
+.sol-secao h2 { font-size: 1.15rem; margin: 0 0 16px; }
+.sol-contador { font-weight: 400; color: #6b7280; }
+
+.sol-vazio {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; padding: 48px 24px;
+  border: 1px dashed #d1d5db; border-radius: 14px; background: #fff;
+}
+.sol-vazio-icone {
+  display: grid; place-items: center;
+  width: 64px; height: 64px; border-radius: 50%;
+  background: #e6f6f3; color: #0f766e; font-size: 1.6rem;
+}
+.sol-vazio h3 { margin: 16px 0 4px; font-size: 1.15rem; }
+.sol-vazio p { margin: 0; color: #6b7280; }
+
+@media (max-width: 600px) {
+  .sol-cabecalho { flex-direction: column; }
+}
+
+.sol-lista { list-style: none; margin: 0; padding: 0; }
+
+.sol-cartao {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px 20px;
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+}
+.sol-cartao-texto { flex: 1; min-width: 0; }
+.sol-cartao-titulo { margin: 0 0 4px; font-size: 1.05rem; color: #4b5563; }
+.sol-cartao-titulo strong { color: #111827; }
+.sol-cartao-detalhe { margin: 0; font-size: .95rem; color: #6b7280; }
+
+.sol-selo {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 12px; border-radius: 999px;
+    font-size: .9rem; font-weight: 600;
+}
+.sol-selo-pendente { background: #fef9c3; border: 1px solid #facc15; color: #854d0e; }
+.sol-seta { color: #9ca3af; }
+
+.sol-botao-contorno { font: inherit; cursor: pointer; }
+.sol-botao-contorno:disabled { opacity: .6; cursor: not-allowed; }
+
+@media (max-width: 600px) { .sol-cartao { flex-wrap: wrap; } }

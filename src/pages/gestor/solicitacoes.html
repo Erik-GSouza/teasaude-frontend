@@ -28,24 +28,42 @@
             data-item-ativo="solicitacoes"
         ></aside>
 
-        <main class="pagina">
+          <main class="pagina">
 
-            <section class="conteudo">
-
-                <header class="cabecalho-pagina">
-                    <h1 class="titulo">
-                        Solicitações e agenda
-                    </h1>
-
-                    <p class="subtitulo">
-                        Área de gestão das solicitações e dos atendimentos da instituição.
-                    </p>
-                </header>
-
-                <div class="aviso" role="status">
-                    Esta funcionalidade ainda está em desenvolvimento.
+            <header class="sol-cabecalho">
+                <div>
+                    <h1 class="sol-titulo">Solicitações e agenda</h1>
+                    <p class="sol-instituicao">Clínica Exemplo</p>
                 </div>
+                <button class="sol-botao-contorno" type="button" disabled title="Indisponível nesta etapa">
+                    <i class="bi bi-clock"></i> Disponibilidades
+                </button>
+            </header>
 
+            <section class="sol-secao" aria-labelledby="titulo-aguardando">
+
+                <h2 id="titulo-aguardando">
+                    Aguardando resposta <span class="sol-contador">(1)</span>
+                </h2>
+
+                <ul class="sol-lista">
+                    <li class="sol-cartao">
+                        <div class="sol-cartao-texto">
+                            <p class="sol-cartao-titulo"><strong>Lucas Almeida</strong> · Primeira avaliação em Fonoaudiologia</p>
+                            <p class="sol-cartao-detalhe">quarta-feira, 28/10/2026, 08:00–09:00 · Clínica Exemplo · Particular</p>
+                        </div>
+                        <span class="sol-selo sol-selo-pendente"><i class="bi bi-clock"></i> Pendente</span>
+                        <i class="bi bi-chevron-right sol-seta"></i>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="sol-secao" aria-labelledby="titulo-confirmada">
+                <h2 id="titulo-confirmada">Agenda confirmada <span class="sol-contador">(0)</span></h2>
+                <div class="sol-vazio">
+                    <span class="sol-vazio-icone"><i class="bi bi-calendar"></i></span>
+                    <h3>Nenhum atendimento confirmado</h3>
+                </div>
             </section>
 
         </main>

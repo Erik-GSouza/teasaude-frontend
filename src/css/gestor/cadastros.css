@@ -1,0 +1,55 @@
+.cad-cabecalho { margin-bottom: 32px; }
+.cad-titulo { font-size: 2rem; margin: 0; }
+.cad-subtitulo { margin: 4px 0 0; color: #6b7280; }
+
+.cad-botao {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 18px; border: 1px solid #e5e7eb; border-radius: 10px;
+    background: #fff; color: #111827; font: inherit; font-weight: 600; cursor: pointer;
+}
+.cad-botao-link {
+    padding: 8px 4px; border: none; background: none;
+    color: #0f766e; font: inherit; font-weight: 600; cursor: pointer;
+}
+.cad-botao:disabled,
+.cad-botao-link:disabled { opacity: .65; cursor: not-allowed; }
+
+.cad-instituicao {
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+    padding: 24px; margin-bottom: 40px;
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+}
+.cad-instituicao-nome { margin: 0 0 4px; font-size: 1.05rem; }
+.cad-instituicao-descricao { margin: 0 0 16px; color: #6b7280; }
+.cad-instituicao-contato { margin: 0 0 4px; color: #111827; }
+.cad-ficticio { color: #6b7280; }
+
+.cad-secao + .cad-secao { margin-top: 40px; }
+.cad-secao-topo {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; margin-bottom: 12px;
+}
+.cad-secao-topo h2 { margin: 0; font-size: 1.1rem; }
+
+.cad-lista {
+    list-style: none; margin: 0; padding: 0;
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;
+}
+.cad-linha { display: flex; align-items: center; gap: 16px; padding: 16px 20px; }
+.cad-linha + .cad-linha { border-top: 1px solid #e5e7eb; }
+.cad-linha-texto { flex: 1; min-width: 0; }
+.cad-linha-titulo { margin: 0 0 4px; font-weight: 600; color: #111827; }
+.cad-linha-detalhe { margin: 0; font-size: .95rem; color: #6b7280; }
+
+.cad-selo {
+    padding: 2px 12px; border-radius: 999px; font-size: .85rem;
+    background: #f3f4f6; border: 1px solid #e5e7eb; color: #4b5563;
+}
+
+.cad-nota { margin: 12px 0 0; font-size: .9rem; color: #6b7280; }
+
+@media (max-width: 600px) {
+    .cad-instituicao { flex-direction: column; }
+    .cad-secao-topo { flex-wrap: wrap; }
+    .cad-linha { flex-wrap: wrap; }
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Detalhes da solicitação | TeaSaude</title>
+
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/gestor/solicitacoes.css">
+    <link rel="stylesheet" href="../../css/gestor/detalhes-solicitacao.css">
+    <link rel="stylesheet" href="../../css/layout.css">
+</head>
+
+<body>
+
+    <div class="aplicacao">
+
+        <aside
+            id="navegacaoApp"
+            class="navegacao-app"
+            data-perfil="gestor"
+            data-item-ativo="solicitacoes"
+        ></aside>
+
+                <main class="pagina">
+
+            <a class="det-voltar" href="solicitacoes.html">
+                <i class="bi bi-chevron-left"></i> Solicitações e agenda
+            </a>
+
+            <h1 class="det-titulo">Detalhes da solicitação</h1>
+
+            <div class="det-grade">
+
+                <div class="det-coluna">
+
+                    <section class="det-cartao" aria-labelledby="det-atendimento">
+                        <div class="det-principal-topo">
+                            <div>
+                                <p class="det-instituicao">Clínica Exemplo</p>
+                                <h2 id="det-atendimento" class="det-atendimento">Primeira avaliação em Fonoaudiologia</h2>
+                            </div>
+                            <span class="det-selo det-selo-pendente"><i class="bi bi-clock"></i> Pendente</span>
+                        </div>
+
+                        <dl class="det-dados">
+                            <div class="det-dado">
+                                <dt>Data e horário</dt>
+                                <dd>quarta-feira, 28/10/2026, 08:00–09:00</dd>
+                            </div>
+                            <div class="det-dado">
+                                <dt>Situação</dt>
+                                <dd>Pendente</dd>
+                            </div>
+                            <div class="det-dado">
+                                <dt>Profissional</dt>
+                                <dd>Ana Exemplo — Fonoaudiologia</dd>
+                            </div>
+                            <div class="det-dado">
+                                <dt>Modalidade informada</dt>
+                                <dd>Particular</dd>
+                            </div>
+                            <div class="det-dado">
+                                <dt>Paciente</dt>
+                                <dd>Lucas Almeida</dd>
+                            </div>
+                            <div class="det-dado">
+                                <dt>Responsável</dt>
+                                <dd>Marina Almeida · (81) 99999-0000</dd>
+                            </div>
+                            <div class="det-dado">
+                                <dt>Endereço</dt>
+                                <dd>Rua Exemplo, 100, Boa Vista — Recife/PE (endereço fictício)</dd>
+                            </div>
+                        </dl>
+                    </section>
+
+                    <section class="det-cartao" aria-labelledby="det-orientacoes">
+                        <h2 id="det-orientacoes" class="det-cartao-titulo">
+                            <i class="bi bi-file-earmark-text det-icone"></i> Orientações da instituição
+                        </h2>
+                        <p class="det-orientacao">Levar identificação e documentos disponíveis.</p>
+                        <p class="det-aviso">
+                            <i class="bi bi-info-circle"></i>
+                            <span>O laudo não é obrigatório para a primeira avaliação. As informações sobre documentos são conferidas pela instituição no atendimento.</span>
+                        </p>
+                    </section>
+
+                    <section class="det-cartao" aria-labelledby="det-historico">
+                        <h2 id="det-historico" class="det-cartao-titulo">Histórico</h2>
+                        <ol class="det-linha-tempo">
+                            <li class="det-evento">
+                                <p class="det-evento-topo">
+                                    <span class="det-selo det-selo-pendente"><i class="bi bi-clock"></i> Pendente</span>
+                                    <span class="det-evento-data">26/10/2026 às 08:00</span>
+                                </p>
+                                <p class="det-evento-autor">Pela família · familia.lucas</p>
+                            </li>
+                        </ol>
+                    </section>
+
+                </div>
+
+                <div class="det-coluna">
+
+                    <section class="det-cartao" aria-labelledby="det-acoes">
+                        <h2 id="det-acoes" class="det-cartao-titulo">Ações</h2>
+                        <div class="det-acoes">
+                            <button class="det-botao det-botao-principal" type="button" disabled title="Indisponível nesta etapa">Confirmar</button>
+                            <button class="det-botao det-botao-perigo" type="button" disabled title="Indisponível nesta etapa">Recusar</button>
+                            <button class="det-botao det-botao-perigo" type="button" disabled title="Indisponível nesta etapa">Cancelar</button>
+                        </div>
+                    </section>
+
+                    <section class="det-cartao" aria-labelledby="det-contato">
+                        <h2 id="det-contato" class="det-cartao-titulo">Contato da instituição</h2>
+                        <p class="det-contato"><i class="bi bi-telephone"></i> (81) 3333-0000</p>
+                        <p class="det-contato"><i class="bi bi-envelope"></i> clinica@example.com</p>
+                    </section>
+
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <script src="../../js/layout.js"></script>
+    <script src="../../js/gestor/detalhes-solicitacao.js"></script>
+
+</body>
+
+</html>
