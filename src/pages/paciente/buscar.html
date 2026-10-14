@@ -15,11 +15,17 @@
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/paciente/buscar.css">
     <link rel="stylesheet" href="../../css/layout.css">
+    <link rel="manifest" href="../../../manifest.webmanifest">
+    <meta name="theme-color" content="#117A72">
 </head>
 
 <body>
 
-    <div class="aplicacao">
+    <p id="avisoSessao" role="status">
+        Verificando sessão...
+    </p>
+
+    <div class="aplicacao" style="visibility: hidden;">
 
         <aside
             id="navegacaoApp"
@@ -36,8 +42,8 @@
                     <h1>Buscar atendimento</h1>
 
                     <p>
-                        Serviços oferecidos por instituições
-                        parceiras em Recife/PE.
+                        Conheça os profissionais vinculados às
+                        instituições cadastradas no TeaSaude.
                     </p>
                 </header>
 
@@ -115,73 +121,32 @@
                     class="resultados-busca"
                     aria-labelledby="titulo-resultados"
                 >
-
                     <div class="cabecalho-resultados">
+
                         <h2 id="titulo-resultados">
-                            Exemplos de atendimentos
+                            Profissionais cadastrados
                         </h2>
 
-                        <p>
-                            Dados fictícios do protótipo.
-                            Nenhuma disponibilidade foi consultada.
+                        <p id="descricaoResultados">
+                            Consultando profissionais...
                         </p>
-                    </div>
-
-                    <div class="lista-atendimentos">
-                        
-                        <article class="item-atendimento">
-
-                            <div class="informacoes-atendimento">
-                                <h3>
-                                    Primeira avaliação em Fonoaudiologia
-                                </h3>
-
-                                <p>
-                                    Clínica Exemplo · Boa Vista, Recife/PE ·
-                                    Ana Exemplo · Particular, Plano Exemplo A
-                                </p>
-                            </div>
-
-                            <div class="situacao-atendimento">
-                                <span class="etiqueta-exemplo">
-                                    Exemplo ilustrativo
-                                </span>
-
-                                <i
-                                    class="bi bi-chevron-right"
-                                    aria-hidden="true"
-                                ></i>
-                            </div>
-
-                        </article>
-                       
-                        <article class="item-atendimento">
-
-                            <div class="informacoes-atendimento">
-                                <h3>
-                                    Avaliação inicial em Terapia Ocupacional
-                                </h3>
-
-                                <p>
-                                    Instituto Demonstração · Derby, Recife/PE ·
-                                    Bruno Exemplo · Particular
-                                </p>
-                            </div>
-
-                            <div class="situacao-atendimento">
-                                <span class="etiqueta-exemplo">
-                                    Exemplo ilustrativo
-                                </span>
-
-                                <i
-                                    class="bi bi-chevron-right"
-                                    aria-hidden="true"
-                                ></i>
-                            </div>
-
-                        </article>
 
                     </div>
+
+                    <div
+                        id="listaAtendimentos"
+                        class="lista-atendimentos"
+                        hidden
+                    ></div>
+
+                    <p
+                        id="estadoBusca"
+                        class="estado-busca"
+                        role="status"
+                        aria-live="polite"
+                    >
+                        Carregando profissionais...
+                    </p>
 
                 </section>
 
@@ -191,7 +156,11 @@
 
     </div>
 
+    <script src="../../js/api.js"></script>
+    <script src="../../js/auth/sessao.js"></script>
+    <script src="../../js/auth/proteger-pagina.js"></script>
     <script src="../../js/layout.js"></script>
+    <script src="../../js/paciente/buscar.js"></script>
 
 </body>
 

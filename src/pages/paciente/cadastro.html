@@ -13,11 +13,17 @@
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/paciente/cadastro.css">
     <link rel="stylesheet" href="../../css/layout.css">
+    <link rel="manifest" href="../../../manifest.webmanifest">
+    <meta name="theme-color" content="#117A72">
 </head>
 
 <body>
 
-    <div class="aplicacao">
+    <p id="avisoSessao" role="status">
+    Verificando sessão...
+    </p>
+
+    <div class="aplicacao" style="visibility: hidden;">
 
         <aside
             id="navegacaoApp"
@@ -229,6 +235,9 @@
 
     </div>
 
+    <script src="../../js/api.js"></script>
+    <script src="../../js/auth/sessao.js"></script>
+    <script src="../../js/auth/proteger-pagina.js"></script>
     <script src="../../js/layout.js"></script>
     <script src="../../js/paciente/cadastro.js"></script>
 

@@ -126,20 +126,34 @@ document.addEventListener("DOMContentLoaded", function () {
         </nav>
 
         <div class="rodape-sidebar">
-            <span
-                class="item-menu indisponivel"
-                aria-disabled="true"
-            >
-                <i
-                    class="bi bi-box-arrow-left"
-                    aria-hidden="true"
-                ></i>
-
-                <span class="texto-item-menu">
-                    <span>Sair</span>
-                    <small>Em desenvolvimento</small>
-                </span>
-            </span>
+            <button type="button" class="botao-sair">
+                <i class="bi bi-box-arrow-left" aria-hidden="true"></i>
+                <span>Sair</span>
+            </button>
         </div>
     `;
+
+    const cabecalhoMobile = document.createElement("header");
+    cabecalhoMobile.className = "cabecalho-mobile";
+
+    // reaproveita a marca da sidebar
+    const marcaMobile = navegacaoApp.querySelector(".marca").cloneNode(true);
+
+    // cria o botao sair do mobile
+    const botaoSairMobile = document.createElement("button");
+    botaoSairMobile.type = "button";
+    botaoSairMobile.className = "botao-sair botao-sair-mobile";
+
+    botaoSairMobile.innerHTML = `
+        <i class="bi bi-box-arrow-left" aria-hidden="true"></i>
+        <span>Sair</span>
+    `;
+
+    cabecalhoMobile.append(marcaMobile, botaoSairMobile);
+    navegacaoApp.before(cabecalhoMobile);
+
+    // conecta os dois botoes a mesma funçao
+    document.querySelectorAll(".botao-sair").forEach(function (botao) {
+        botao.addEventListener("click", encerrarSessao);
+    });
 });

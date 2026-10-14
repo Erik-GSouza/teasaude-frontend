@@ -16,6 +16,8 @@
 
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/auth/criar-conta.css">
+    <link rel="manifest" href="../../../manifest.webmanifest">
+    <meta name="theme-color" content="#117A72">
 </head>
 
 <body>
@@ -25,23 +27,207 @@
         <section class="conteudo">
 
             <header class="cabecalho-pagina">
-                <h1 class="titulo">
-                    Criar conta
-                </h1>
+                <h1 class="titulo">Criar conta</h1>
 
                 <p class="subtitulo">
-                    Criação de conta para Paciente/responsável.
+                    Cadastre seu acesso e os dados da criança ou adolescente
+                    que será acompanhado pelo TeaSaude.
                 </p>
             </header>
 
-            <div class="aviso" role="status">
-                A criação de conta ainda não está implementada.
-            </div>
+            <form id="formCriarConta" class="formulario-criar-conta" novalidate>
 
-            <p>
-                Já possui uma conta?
+                <!-- Acesso -->
+                <section class="grupo-formulario">
+
+                    <div class="descricao-grupo">
+                        <h2>Dados de acesso</h2>
+                        <p>
+                            Crie as credenciais utilizadas pelo adulto
+                            responsável para entrar no TeaSaude.
+                        </p>
+                    </div>
+
+                    <div class="campos-grupo">
+                        <div class="campo">
+                            <label for="nomeUsuario">
+                                Nome de usuário <span class="obrigatorio">*</span>
+                            </label>
+
+                            <input type="text" id="nomeUsuario"
+                                name="nomeUsuario" autocomplete="username"
+                                maxlength="30" required
+                                aria-describedby="erroNomeUsuario">
+
+                            <p id="erroNomeUsuario" class="mensagem-erro"
+                                aria-live="polite"></p>
+                        </div>
+
+                        <div class="linha-campos">
+
+                            <div class="campo">
+                                <label for="senha">
+                                    Senha <span class="obrigatorio">*</span>
+                                </label>
+
+                                <input type="password" id="senha"
+                                    name="senha" autocomplete="new-password"
+                                    required aria-describedby="erroSenha">
+
+                                <p id="erroSenha" class="mensagem-erro"
+                                    aria-live="polite"></p>
+                            </div>
+
+                            <div class="campo">
+                                <label for="confirmarSenha">
+                                    Confirmar senha <span class="obrigatorio">*</span>
+                                </label>
+
+                                <input type="password" id="confirmarSenha"
+                                    name="confirmarSenha" autocomplete="new-password"
+                                    required aria-describedby="erroConfirmarSenha">
+
+                                <p id="erroConfirmarSenha" class="mensagem-erro"
+                                    aria-live="polite"></p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <hr class="divisor-formulario">
+
+                <!-- Paciente -->
+                <section class="grupo-formulario">
+
+                    <div class="descricao-grupo">
+                        <h2>Dados do paciente</h2>
+                        <p>
+                            A criança ou o adolescente que será atendido.
+                        </p>
+                    </div>
+
+                    <div class="campos-grupo">
+
+                        <div class="campo">
+                            <label for="nomeCompleto">
+                                Nome completo do paciente
+                                <span class="obrigatorio">*</span>
+                            </label>
+
+                            <input type="text" id="nomeCompleto"
+                                name="nomeCompleto" required
+                                aria-describedby="erroNomeCompleto">
+
+                            <p id="erroNomeCompleto" class="mensagem-erro"
+                                aria-live="polite"></p>
+                        </div>
+
+                        <div class="campo">
+                            <label for="dataNascimento">
+                                Data de nascimento
+                                <span class="obrigatorio">*</span>
+                            </label>
+
+                            <input type="date" id="dataNascimento"
+                                name="dataNascimento" required
+                                aria-describedby="erroDataNascimento">
+
+                            <p id="erroDataNascimento" class="mensagem-erro"
+                                aria-live="polite"></p>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <hr class="divisor-formulario">
+
+                <!-- Responsável -->
+                <section class="grupo-formulario">
+
+                    <div class="descricao-grupo">
+                        <h2>Adulto responsável / contato</h2>
+                        <p>
+                            Pessoa que opera a conta e recebe os contatos
+                            das instituições.
+                        </p>
+                    </div>
+
+                    <div class="campos-grupo">
+
+                        <div class="campo">
+                            <label for="nomeContato">
+                                Nome do responsável/contato
+                                <span class="obrigatorio">*</span>
+                            </label>
+
+                            <input type="text" id="nomeContato"
+                                name="nomeContato" required
+                                aria-describedby="erroNomeContato">
+
+                            <p id="erroNomeContato" class="mensagem-erro"
+                                aria-live="polite"></p>
+                        </div>
+
+                        <div class="linha-campos">
+
+                            <div class="campo">
+                                <label for="telefoneContato">
+                                    Telefone de contato
+                                    <span class="obrigatorio">*</span>
+                                </label>
+
+                                <input type="tel" id="telefoneContato"
+                                    name="telefoneContato"
+                                    placeholder="(81) 99999-9999"
+                                    autocomplete="tel" required
+                                    aria-describedby="erroTelefoneContato">
+
+                                <p id="erroTelefoneContato" class="mensagem-erro"
+                                    aria-live="polite"></p>
+                            </div>
+
+                            <div class="campo">
+                                <label for="emailContato">
+                                    E-mail de contato
+                                    <span class="opcional">(opcional)</span>
+                                </label>
+
+                                <input type="email" id="emailContato"
+                                    name="emailContato"
+                                    placeholder="exemplo@email.com"
+                                    autocomplete="email"
+                                    aria-describedby="erroEmailContato">
+
+                                <p id="erroEmailContato" class="mensagem-erro"
+                                    aria-live="polite"></p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <div class="acoes-formulario">
+                    <button type="submit" id="botaoCadastrar"
+                        class="botao-primario">
+                        Criar conta
+                    </button>
+                </div>
+
+                <p id="mensagemCadastro" class="mensagem-formulario"
+                    role="status" aria-live="polite">
+                </p>
+
+            </form>
+
+            <p class="voltar-login">
                 <a href="../../../index.html">
-                    Voltar para entrar
+                    Voltar para o login
                 </a>
             </p>
 
@@ -49,6 +235,7 @@
 
     </main>
 
+    <script src="../../js/api.js"></script>
     <script src="../../js/auth/criar-conta.js"></script>
 
 </body>

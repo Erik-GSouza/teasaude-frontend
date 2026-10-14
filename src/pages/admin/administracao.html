@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/layout.css">
     <link rel="stylesheet" href="../../css/admin/administracao.css">
+    <link rel="manifest" href="../../../manifest.webmanifest">
+    <meta name="theme-color" content="#117A72">
 </head>
 
 <body>
@@ -50,9 +52,122 @@
                     </p>
                 </header>
 
-                <div class="aviso" role="status">
-                    Esta funcionalidade ainda está em desenvolvimento.
-                </div>
+                <section class="pacientes-admin" aria-labelledby="tituloPacientes">
+
+                    <h2 id="tituloPacientes">
+                        Pacientes cadastrados
+                    </h2>
+
+                    <p id="estadoPacientes" role="status" aria-live="polite">
+                        Carregando pacientes...
+                    </p>
+
+                    <ul
+                        id="listaPacientes"
+                        class="lista-pacientes"
+                        hidden
+                    ></ul>
+
+                </section>
+
+                <section
+                    id="painelPaciente"
+                    class="painel-paciente"
+                    aria-labelledby="tituloDadosPaciente"
+                    hidden
+                >
+                    <h2 id="tituloDadosPaciente">Dados do paciente</h2>
+
+                    <p id="estadoPaciente" role="status" aria-live="polite"></p>
+
+                    <dl id="dadosPaciente" class="dados-paciente" hidden>
+                        <div>
+                            <dt>Nome completo</dt>
+                            <dd id="detalheNome"></dd>
+                        </div>
+
+                        <div>
+                            <dt>Data de nascimento</dt>
+                            <dd id="detalheNascimento"></dd>
+                        </div>
+
+                        <div>
+                            <dt>Responsável</dt>
+                            <dd id="detalheResponsavel"></dd>
+                        </div>
+
+                        <div>
+                            <dt>Telefone</dt>
+                            <dd id="detalheTelefone"></dd>
+                        </div>
+
+                        <div>
+                            <dt>E-mail de contato</dt>
+                            <dd id="detalheEmail"></dd>
+                        </div>
+                    </dl>
+
+                    <button
+                        type="button"
+                        id="botaoEditarPaciente"
+                        class="botao-consultar"
+                        hidden
+                    >
+                        Editar dados
+                    </button>
+
+                    <form id="formEditarPaciente" class="formulario-edicao" novalidate hidden>
+
+                        <h3>Editar dados do paciente</h3>
+
+                        <div class="campo">
+                            <label for="editarNomeCompleto">Nome completo</label>
+                            <input type="text" id="editarNomeCompleto"
+                                minlength="3" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="editarDataNascimento">Data de nascimento</label>
+                            <input type="date" id="editarDataNascimento" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="editarNomeContato">Responsável / contato</label>
+                            <input type="text" id="editarNomeContato" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="editarTelefoneContato">Telefone</label>
+                            <input type="tel" id="editarTelefoneContato" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="editarEmailContato">E-mail (opcional)</label>
+                            <input type="email" id="editarEmailContato">
+                        </div>
+
+                        <p id="mensagemEdicao" role="status" aria-live="polite"></p>
+
+                        <div class="acoes-formulario">
+                            <button
+                                type="button"
+                                id="botaoCancelarEdicao"
+                                class="botao-secundario"
+                            >
+                                Cancelar
+                            </button>
+
+                            <button
+                                type="submit"
+                                id="botaoSalvarPaciente"
+                                class="botao-primario"
+                            >
+                                Salvar alterações
+                            </button>
+                        </div>
+
+                    </form>
+                </section>
 
             </section>
 

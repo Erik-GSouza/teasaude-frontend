@@ -1,1 +1,72 @@
-/* Estilos específicos da página pública de criação de conta. */
+.conteudo {
+    max-width: 1000px;
+}
+
+.formulario-criar-conta {
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid #dbe3ea;
+    border-radius: 0.75rem;
+}
+
+.grupo-formulario {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+.descricao-grupo h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+    color: #172033;
+}
+
+.descricao-grupo p {
+    margin: 0;
+    color: #5f6b7a;
+    line-height: 1.5;
+}
+
+.campos-grupo {
+    min-width: 0;
+}
+
+.linha-campos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.divisor-formulario {
+    margin: 2rem 0;
+    border: 0;
+    border-top: 1px solid #dbe3ea;
+}
+
+.voltar-login {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: #5f6b7a;
+}
+
+.voltar-login a {
+    color: #117a72;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .formulario-criar-conta {
+        padding: 1.25rem;
+    }
+
+    .grupo-formulario {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .linha-campos {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}

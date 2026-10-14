@@ -158,6 +158,20 @@
     font-size: 1.1rem;
 }
 
+/* Estado da consulta API */
+.estado-busca {
+    margin: 0;
+    padding: 1.25rem;
+    background: #fff;
+    border: 1px solid #dbe3ea;
+    border-radius: 0.625rem;
+    color: #5f6b7a;
+}
+
+.estado-busca.erro-busca {
+    color: #b02a37;
+}
+
 @media (max-width: 600px) {
     .item-atendimento {
         flex-direction: column;
