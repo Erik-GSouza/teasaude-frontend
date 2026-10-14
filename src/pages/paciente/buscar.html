@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Buscar atendimento | TeaSaude</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/paciente/buscar.css">
+    <link rel="stylesheet" href="../../css/layout.css">
+</head>
+
+<body>
+
+    <div class="aplicacao">
+
+        <aside
+            id="navegacaoApp"
+            class="navegacao-app"
+            data-perfil="paciente"
+            data-item-ativo="buscar"
+        ></aside>
+
+        <main class="pagina">
+
+            <section class="conteudo busca-conteudo">
+
+                <header class="cabecalho-busca">
+                    <h1>Buscar atendimento</h1>
+
+                    <p>
+                        Serviços oferecidos por instituições
+                        parceiras em Recife/PE.
+                    </p>
+                </header>
+
+                <section
+                    class="painel-filtros"
+                    aria-label="Filtros de atendimento"
+                >
+
+                    <div class="grade-filtros">
+
+                        <div class="filtro-campo">
+                            <label for="especialidade">
+                                Especialidade
+                            </label>
+
+                            <select id="especialidade" disabled>
+                                <option value="">
+                                    Todas
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="filtro-campo">
+                            <label for="atendimento">
+                                Atendimento
+                            </label>
+
+                            <select id="atendimento" disabled>
+                                <option value="">
+                                    Todos
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="filtro-campo">
+                            <label for="instituicao">
+                                Instituição
+                            </label>
+
+                            <select id="instituicao" disabled>
+                                <option value="">
+                                    Todas
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="filtro-campo">
+                            <label for="modalidade">
+                                Particular ou plano
+                            </label>
+
+                            <select id="modalidade" disabled>
+                                <option value="">
+                                    Qualquer modalidade
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <p class="observacao-plano">
+                        Plano informado pela instituição;
+                        não garante cobertura.
+                    </p>
+
+                    <p class="aviso-filtros">
+                        Os filtros estarão disponíveis após
+                        a integração dos atendimentos.
+                    </p>
+
+                </section>
+
+                <!-- Resultados de atendimento -->
+                <section
+                    class="resultados-busca"
+                    aria-labelledby="titulo-resultados"
+                >
+
+                    <div class="cabecalho-resultados">
+                        <h2 id="titulo-resultados">
+                            Exemplos de atendimentos
+                        </h2>
+
+                        <p>
+                            Dados fictícios do protótipo.
+                            Nenhuma disponibilidade foi consultada.
+                        </p>
+                    </div>
+
+                    <div class="lista-atendimentos">
+                        
+                        <article class="item-atendimento">
+
+                            <div class="informacoes-atendimento">
+                                <h3>
+                                    Primeira avaliação em Fonoaudiologia
+                                </h3>
+
+                                <p>
+                                    Clínica Exemplo · Boa Vista, Recife/PE ·
+                                    Ana Exemplo · Particular, Plano Exemplo A
+                                </p>
+                            </div>
+
+                            <div class="situacao-atendimento">
+                                <span class="etiqueta-exemplo">
+                                    Exemplo ilustrativo
+                                </span>
+
+                                <i
+                                    class="bi bi-chevron-right"
+                                    aria-hidden="true"
+                                ></i>
+                            </div>
+
+                        </article>
+                       
+                        <article class="item-atendimento">
+
+                            <div class="informacoes-atendimento">
+                                <h3>
+                                    Avaliação inicial em Terapia Ocupacional
+                                </h3>
+
+                                <p>
+                                    Instituto Demonstração · Derby, Recife/PE ·
+                                    Bruno Exemplo · Particular
+                                </p>
+                            </div>
+
+                            <div class="situacao-atendimento">
+                                <span class="etiqueta-exemplo">
+                                    Exemplo ilustrativo
+                                </span>
+
+                                <i
+                                    class="bi bi-chevron-right"
+                                    aria-hidden="true"
+                                ></i>
+                            </div>
+
+                        </article>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="../../js/layout.js"></script>
+
+</body>
+
+</html>
