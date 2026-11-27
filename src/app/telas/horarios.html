@@ -1,0 +1,124 @@
+<div class="cab-pagina">
+  <p class="sobretitulo">Agenda profissional</p>
+  <h1>{{ proprio ? 'Meus horários' : 'Disponibilidades' }}</h1>
+  <p>Publique os intervalos em que as famílias podem solicitar atendimento.</p>
+</div>
+<tea-aviso [erro]="erro" [mensagem]="mensagem" [carregando]="carregando" />
+<div class="linha-titulo">
+  <h2>Horários cadastrados</h2>
+  <button class="primaria" [disabled]="carregando" (click)="editar()">
+    <tea-icon nome="mais" />
+    Novo horário
+  </button>
+</div>
+@if (form) {
+  <form class="painel formulario" ngNativeValidate (ngSubmit)="salvar()">
+    <h2>{{ id ? 'Editar horário' : 'Publicar horário' }}</h2>
+    @if (!proprio && !id) {
+      <label>
+        Profissional
+        <select name="medico" [(ngModel)]="medicoId" required>
+          <option value="">Selecione</option>
+          @for (m of medicos; track m._id) {
+            <option [value]="m._id">{{ m.nomeCompleto }} · {{ m.especialidade }}</option>
+          }
+        </select>
+      </label>
+    }
+    <div class="dupla">
+      <label>
+        Início
+        <input
+          id="inicio-horario"
+          type="datetime-local"
+          name="inicio"
+          required
+          [(ngModel)]="inicio"
+        />
+      </label>
+      <label>
+        Término
+        <input type="datetime-local" name="fim" required [(ngModel)]="fim" />
+      </label>
+    </div>
+    <p class="muted">Use o horário local do seu dispositivo.</p>
+    <div class="acoes">
+      <button class="primaria" [disabled]="carregando">
+        {{ id ? 'Salvar alterações' : 'Publicar horário' }}
+      </button>
+      <button type="button" class="secundaria" [disabled]="carregando" (click)="form = false">
+        Voltar
+      </button>
+    </div>
+  </form>
+}
+@if (alvo) {
+  <section class="confirmacao">
+    <h3>{{ alvo.ativo ? 'Desativar' : 'Reativar' }} o horário de {{ dataHora(alvo.inicio) }}?</h3>
+    <p>
+      {{
+        alvo.ativo
+          ? 'Ele deixará de aparecer como livre para as famílias.'
+          : 'Ele poderá voltar a ser solicitado pelas famílias.'
+      }}
+    </p>
+    <div class="acoes">
+      <button class="primaria" [disabled]="carregando" (click)="alterar()">
+        Confirmar alteração
+      </button>
+      <button class="secundaria" [disabled]="carregando" (click)="alvo = undefined">Voltar</button>
+    </div>
+  </section>
+}
+<div class="ferramentas">
+  @if (!proprio) {
+    <label>
+      Profissional
+      <select [(ngModel)]="medicoFiltro">
+        <option value="">Todos</option>
+        @for (m of medicos; track m._id) {
+          <option [value]="m._id">{{ m.nomeCompleto }}</option>
+        }
+      </select>
+    </label>
+  }
+  <label>
+    Exibir
+    <select [(ngModel)]="estadoFiltro">
+      <option value="futuros">Horários futuros</option>
+      <option value="livres">Livres no futuro</option>
+      <option value="ocupados">Ocupados</option>
+      <option value="inativos">Inativos</option>
+      <option value="todos">Todo o histórico</option>
+    </select>
+  </label>
+  <button class="secundaria" [disabled]="carregando" (click)="atualizar()">Atualizar lista</button>
+</div>
+<div class="lista">
+  @for (h of lista; track h._id) {
+    <article class="item">
+      <span class="medalha"><tea-icon nome="hora" /></span>
+      <div class="crescer">
+        <span class="estado">
+          {{ !h.ativo ? 'Inativo' : h.ocupada ? 'Ocupado' : futuro(h) ? 'Livre' : 'Encerrado' }}
+        </span>
+        <h3>{{ dataHora(h.inicio) }} até {{ hora(h.fim) }}</h3>
+        @if (!proprio) {
+          <p>{{ nome(h) }}</p>
+        }
+      </div>
+      @if (!h.ocupada && futuro(h)) {
+        <div class="acoes">
+          <button class="secundaria" [disabled]="carregando" (click)="editar(h)">Editar</button>
+          <button class="link" [disabled]="carregando" (click)="alvo = h; form = false">
+            {{ h.ativo ? 'Desativar' : 'Reativar' }}
+          </button>
+        </div>
+      }
+    </article>
+  } @empty {
+    @if (!carregando && !erro) {
+      <p class="vazio">Nenhum horário nesta seleção.</p>
+    }
+  }
+</div>

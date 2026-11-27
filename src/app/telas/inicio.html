@@ -1,0 +1,61 @@
+<section class="hero-interno">
+  <div>
+    <p class="sobretitulo hero-kicker">
+      <span></span>
+      Área de {{ perfis[perfil] }}
+    </p>
+    <h1>Olá, {{ primeiroNome }}.</h1>
+    <p>
+      {{
+        perfil === 'responsavel'
+          ? 'Acompanhe os próximos passos do cuidado da sua família.'
+          : perfil === 'medico'
+            ? 'Organize os horários que as famílias podem solicitar.'
+            : 'Acompanhe a agenda e organize o atendimento.'
+      }}
+    </p>
+  </div>
+  <img src="jardim.svg" alt="" width="270" height="126" />
+</section>
+<div class="linha-titulo">
+  <div>
+    <p class="sobretitulo">Visão geral</p>
+    <h2>{{ perfil === 'medico' ? 'Minha disponibilidade' : 'Resumo da agenda' }}</h2>
+  </div>
+  <span class="tag">{{ hoje }}</span>
+</div>
+<section class="painel">
+  <tea-aviso [erro]="erro" [carregando]="carregando" />
+  @if (erro) {
+    <button class="secundaria" (click)="atualizar()">Tentar novamente</button>
+  } @else if (!carregando) {
+    <p>{{ resumo }}</p>
+    @if (proximo) {
+      <p>
+        <strong>Próximo confirmado:</strong>
+        {{ dataHora(proximo.dataHora) }} ·
+        {{ proximo.medicoId?.nomeCompleto }}
+      </p>
+    } @else if (perfil === 'responsavel') {
+      <p class="muted">Nenhum atendimento futuro confirmado.</p>
+    }
+  }
+</section>
+<div class="linha-titulo">
+  <div>
+    <p class="sobretitulo">Navegação</p>
+    <h2>O que você quer fazer?</h2>
+  </div>
+</div>
+<div class="atalhos">
+  @for (i of atalhos; track i.rota) {
+    <a class="atalho" [routerLink]="['/', i.rota]">
+      <span class="medalha"><tea-icon [nome]="i.icone" /></span>
+      <div>
+        <strong>{{ nomeMenu(i.rota, perfil, i.nome) }}</strong>
+        <p>{{ descricoes[i.rota] }}</p>
+      </div>
+      <tea-icon class="flecha" nome="seta" />
+    </a>
+  }
+</div>

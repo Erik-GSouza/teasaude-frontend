@@ -1,0 +1,21 @@
+{
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "interface",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/index.html",
+          "/*.css",
+          "/*.js",
+          "/manifest.webmanifest",
+          "/icons/**",
+          "/jardim.svg"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [],
+  "navigationUrls": ["/**", "!/**/*.*", "!/api/**"]
+}

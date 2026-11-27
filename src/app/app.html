@@ -1,0 +1,66 @@
+<a class="pular" href="#principal" (click)="$event.preventDefault(); main.focus()">
+  Pular para o conteúdo
+</a>
+@if (!conectado) {
+  <p class="offline" role="status">
+    Você está sem conexão. Reconecte-se para consultar dados ou enviar alterações.
+  </p>
+}
+@if (api.usuario(); as u) {
+  <aside class="lateral">
+    <a class="marca-link" routerLink="/inicio" aria-label="TeaSaude, início"><tea-marca /></a>
+    <p class="sobretitulo nav-titulo">Navegação</p>
+    <nav aria-label="Menu principal">
+      @for (i of itens; track i.rota) {
+        <a [routerLink]="['/', i.rota]" routerLinkActive="ativo" ariaCurrentWhenActive="page">
+          <tea-icon [nome]="i.icone" />
+          {{ nomeMenu(i.rota, u.perfil, i.nome) }}
+        </a>
+      }
+    </nav>
+    <div class="rodape-nav">
+      <strong>{{ nome }}</strong>
+      <span>{{ perfis[u.perfil] }}</span>
+      <button class="link" (click)="api.sair()">
+        <tea-icon nome="sair" />
+        Sair da conta
+      </button>
+    </div>
+  </aside>
+  <header class="topo">
+    <a routerLink="/inicio" class="marca-mobile" aria-label="TeaSaude, início"><tea-marca /></a>
+    <span class="portal">Portal TeaSaude</span>
+    <span class="etiqueta">
+      <span class="ponto"></span>
+      {{ perfis[u.perfil] }}
+    </span>
+    <button class="sair-mobile icon-btn" aria-label="Sair da conta" (click)="api.sair()">
+      <tea-icon nome="sair" />
+    </button>
+  </header>
+  <nav class="nav-mobile" aria-label="Navegação no celular">
+    @for (i of itens.length > 4 ? itens.slice(0, 3) : itens; track i.rota) {
+      <a [routerLink]="['/', i.rota]" routerLinkActive="ativo" ariaCurrentWhenActive="page">
+        <tea-icon [nome]="i.icone" />
+        {{ i.curto }}
+      </a>
+    }
+    @if (itens.length > 4) {
+      <button (click)="aberto = !aberto" [attr.aria-expanded]="aberto" aria-controls="menu-extra">
+        <tea-icon nome="menu" />
+        Mais
+      </button>
+    }
+  </nav>
+  @if (aberto) {
+    <nav id="menu-extra" class="menu-extra" aria-label="Mais páginas">
+      @for (i of itens.slice(3); track i.rota) {
+        <a [routerLink]="['/', i.rota]" routerLinkActive="ativo" ariaCurrentWhenActive="page">
+          <tea-icon [nome]="i.icone" />
+          {{ nomeMenu(i.rota, u.perfil, i.nome) }}
+        </a>
+      }
+    </nav>
+  }
+}
+<main id="principal" #main tabindex="-1" [class.interno]="api.usuario()"><router-outlet /></main>

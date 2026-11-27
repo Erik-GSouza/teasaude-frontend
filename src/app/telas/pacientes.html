@@ -1,0 +1,99 @@
+<div class="cab-pagina">
+  <p class="sobretitulo">Cadastros</p>
+  <h1>{{ admin ? 'Pacientes' : 'Minha família' }}</h1>
+  <p>
+    {{
+      admin
+        ? 'Consulte os pacientes e seus responsáveis.'
+        : 'Gerencie as crianças e adolescentes vinculados à sua conta.'
+    }}
+  </p>
+</div>
+<tea-aviso [erro]="erro" [mensagem]="mensagem" [carregando]="carregando" />
+@if (!admin) {
+  <section class="painel">
+    <p class="sobretitulo">Responsável pela conta</p>
+    <h2>{{ api.usuario()?.nomeCompleto || api.usuario()?.nomeUsuario }}</h2>
+    <p>
+      {{ api.usuario()?.telefone || 'Telefone não informado' }} ·
+      {{ api.usuario()?.email || 'E-mail não informado' }}
+    </p>
+  </section>
+}
+<div class="linha-titulo">
+  <h2>{{ admin ? 'Lista de pacientes' : 'Pacientes da família' }}</h2>
+  @if (!admin) {
+    <button class="primaria" (click)="editar()" [disabled]="carregando">
+      <tea-icon nome="mais" />
+      Adicionar paciente
+    </button>
+  }
+</div>
+@if (editando) {
+  <form class="painel formulario" ngNativeValidate (ngSubmit)="salvar()">
+    <h2>{{ id ? 'Editar paciente' : 'Adicionar paciente' }}</h2>
+    <label>
+      Nome completo
+      <input id="nome-paciente" name="nome" [(ngModel)]="nome" required minlength="3" />
+    </label>
+    <label>
+      Data de nascimento
+      <input type="date" name="nasc" required [max]="hoje" [(ngModel)]="nascimento" />
+    </label>
+    <div class="acoes">
+      <button class="primaria" [disabled]="carregando">Salvar paciente</button>
+      <button type="button" class="secundaria" (click)="editando = false">Voltar</button>
+    </div>
+  </form>
+}
+@if (excluir) {
+  <section class="confirmacao" aria-label="Confirmar exclusão">
+    <h3>Excluir {{ excluir.nomeCompleto }}?</h3>
+    <p>A exclusão é definitiva. A API verifica se existem agendamentos vinculados.</p>
+    <div class="acoes">
+      <button class="perigo" [disabled]="carregando" (click)="remover()">
+        Sim, excluir paciente
+      </button>
+      <button class="secundaria" (click)="excluir = undefined">Manter cadastro</button>
+    </div>
+  </section>
+}
+@if (admin) {
+  <label class="filtro">
+    Buscar por nome
+    <input type="search" [(ngModel)]="filtro" placeholder="Nome do paciente" />
+  </label>
+}
+<div class="lista">
+  @for (p of visiveis; track p._id) {
+    <article class="item">
+      <span class="medalha"><tea-icon nome="usuario" /></span>
+      <div class="crescer">
+        <h3>{{ p.nomeCompleto }}</h3>
+        <p>Nascimento: {{ dataCivil(p.dataNascimento) }}</p>
+        @if (admin && contato(p); as r) {
+          <p>Responsável: {{ r.nomeCompleto }} · {{ r.telefone || 'Sem telefone' }}</p>
+        }
+      </div>
+      <div class="acoes">
+        <button class="secundaria" [disabled]="carregando" (click)="editar(p)">Editar</button>
+        @if (admin) {
+          <button
+            class="link perigo-texto"
+            [disabled]="carregando"
+            (click)="excluir = p; editando = false"
+          >
+            Excluir
+          </button>
+        }
+      </div>
+    </article>
+  } @empty {
+    @if (!carregando && !erro) {
+      <p class="vazio">Nenhum paciente encontrado.</p>
+    }
+  }
+</div>
+@if (erro && !editando && !excluir) {
+  <button class="secundaria" (click)="atualizar()">Recarregar lista</button>
+}
