@@ -1,0 +1,148 @@
+<div class="cab-pagina">
+  <p class="sobretitulo">Equipe de atendimento</p>
+  <h1>Profissionais</h1>
+  <p>
+    Gerencie os cadastros {{ admin ? 'das instituições' : 'da sua instituição' }} e as orientações
+    mostradas às famílias.
+  </p>
+</div>
+<tea-aviso [erro]="erro" [mensagem]="mensagem" [carregando]="carregando" />
+<div class="linha-titulo">
+  <h2>Profissionais ativos</h2>
+  <button class="primaria" [disabled]="carregando" (click)="editar()">
+    <tea-icon nome="mais" />
+    Novo profissional
+  </button>
+</div>
+@if (modo === 'editar') {
+  <form ngNativeValidate class="painel formulario" (ngSubmit)="salvar()">
+    <h2>{{ id ? 'Editar profissional' : 'Cadastrar profissional' }}</h2>
+    <label>
+      Nome completo
+      <input id="nome-profissional" name="nome" [(ngModel)]="nome" minlength="3" required />
+    </label>
+    <label>
+      Especialidade
+      <input name="especialidade" [(ngModel)]="especialidade" minlength="3" required />
+    </label>
+    @if (admin && !id) {
+      <label>
+        Instituição
+        <input
+          name="instituicao"
+          list="instituicoes-prof"
+          [(ngModel)]="instituicaoId"
+          required
+          placeholder="Selecione ou informe o ID da instituição"
+        />
+        <datalist id="instituicoes-prof">
+          @for (i of instituicoes; track i[0]) {
+            <option [value]="i[0]">{{ i[1] }}</option>
+          }
+        </datalist>
+      </label>
+    }
+    <label>
+      Modalidades (opcional)
+      <input name="modalidades" [(ngModel)]="modalidades" placeholder="Ex.: presencial, online" />
+      <small>Separe as opções por vírgula.</small>
+    </label>
+    <label>
+      Orientações sobre documentos (opcional)
+      <textarea rows="3" name="orientacoes" [(ngModel)]="orientacoes"></textarea>
+    </label>
+    <div class="acoes">
+      <button class="primaria" [disabled]="carregando">Salvar profissional</button>
+      <button type="button" class="secundaria" [disabled]="carregando" (click)="modo = ''">
+        Voltar
+      </button>
+      @if (alvo && !alvo.ativo) {
+        <button type="button" class="link" (click)="acao(alvo, 'ativo')">
+          Reativar profissional
+        </button>
+      }
+    </div>
+  </form>
+}
+@if (modo === 'ativo' && alvo) {
+  <section class="confirmacao">
+    <h3>{{ alvo.ativo ? 'Desativar' : 'Reativar' }} {{ alvo.nomeCompleto }}?</h3>
+    <p>
+      {{
+        alvo.ativo
+          ? 'O profissional sairá da busca das famílias. Guarde o ID para encontrá-lo novamente:'
+          : 'O profissional poderá voltar a aparecer na busca:'
+      }}
+      <code>{{ alvo._id }}</code>
+    </p>
+    <div class="acoes">
+      <button class="primaria" [disabled]="carregando" (click)="alterar()">
+        Confirmar alteração
+      </button>
+      <button class="secundaria" (click)="modo = ''">Voltar</button>
+    </div>
+  </section>
+}
+@if (modo === 'conta' && alvo) {
+  <form class="painel formulario" ngNativeValidate (ngSubmit)="vincular()">
+    <h2>Criar conta para {{ alvo.nomeCompleto }}</h2>
+    <p>Cada profissional pode receber uma conta médica.</p>
+    <label>
+      Nome de usuário
+      <input name="usuario" required [(ngModel)]="usuario" autocomplete="off" />
+    </label>
+    <label>
+      Senha inicial
+      <input
+        name="senha"
+        type="password"
+        required
+        autocomplete="new-password"
+        [(ngModel)]="senha"
+      />
+    </label>
+    <div class="acoes">
+      <button class="primaria" [disabled]="carregando">Criar acesso médico</button>
+      <button class="secundaria" type="button" (click)="modo = ''; senha = ''">Voltar</button>
+    </div>
+  </form>
+}
+<div class="ferramentas">
+  <label>
+    Buscar profissional
+    <input type="search" [(ngModel)]="busca" placeholder="Nome ou especialidade" />
+  </label>
+  <button class="secundaria" [disabled]="carregando" (click)="atualizar()">Atualizar lista</button>
+</div>
+<div class="lista">
+  @for (m of visiveis; track m._id) {
+    <article class="item">
+      <div class="crescer">
+        <p class="sobretitulo">{{ m.especialidade }}</p>
+        <h3>{{ m.nomeCompleto }}</h3>
+        <p>{{ instituicao(m.instituicaoId) }}</p>
+      </div>
+      <div class="acoes">
+        <button class="secundaria" (click)="editar(m)">Editar</button>
+        @if (admin) {
+          <button class="link" (click)="acao(m, 'conta')">Criar acesso</button>
+        }
+        <button class="link perigo-texto" (click)="acao(m, 'ativo')">Desativar</button>
+      </div>
+    </article>
+  } @empty {
+    @if (!erro && !carregando) {
+      <p class="vazio">Nenhum profissional ativo encontrado.</p>
+    }
+  }
+</div>
+<details class="painel">
+  <summary>Localizar cadastro pelo ID, inclusive inativo</summary>
+  <form class="ferramentas" ngNativeValidate (ngSubmit)="buscarId()">
+    <label>
+      ID do profissional
+      <input name="id" [(ngModel)]="idBusca" required maxlength="24" />
+    </label>
+    <button class="secundaria" [disabled]="carregando">Localizar cadastro</button>
+  </form>
+</details>

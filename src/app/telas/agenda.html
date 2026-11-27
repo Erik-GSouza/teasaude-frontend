@@ -1,0 +1,125 @@
+<div class="cab-pagina">
+  <p class="sobretitulo">Atendimento</p>
+  <h1>
+    {{
+      familia
+        ? 'Meus agendamentos'
+        : perfil === 'gestor'
+          ? 'Solicitações e agenda'
+          : 'Agendamentos globais'
+    }}
+  </h1>
+  <p>
+    {{
+      familia
+        ? 'Consulte a resposta da instituição e os detalhes de cada solicitação.'
+        : 'Revise as solicitações e acompanhe a situação de cada atendimento.'
+    }}
+  </p>
+</div>
+<tea-aviso [erro]="erro" [mensagem]="mensagem" [carregando]="carregando" />
+@if (detalhe; as a) {
+  <button class="link" [disabled]="carregando" (click)="fechar()">← Voltar à lista</button>
+  <section class="painel formulario">
+    <span class="estado" [attr.data-status]="a.status">{{ situacoes[a.status] }}</span>
+    <h2 id="titulo-detalhe" tabindex="-1">Detalhes do atendimento</h2>
+    <dl>
+      <dt>Paciente</dt>
+      <dd>{{ a.pacienteId?.nomeCompleto || 'Não informado' }}</dd>
+      <dt>Profissional</dt>
+      <dd>{{ a.medicoId?.nomeCompleto || 'Não informado' }} · {{ a.medicoId?.especialidade }}</dd>
+      <dt>Instituição</dt>
+      <dd>{{ a.instituicaoId?.nomePublico || 'Não informada' }}</dd>
+      <dt>Horário</dt>
+      <dd>
+        {{ dataHora(a.dataHora) }}
+        @if (a.disponibilidadeId?.fim) {
+          até {{ hora(a.disponibilidadeId!.fim) }}
+        }
+      </dd>
+      @if (a.modalidade) {
+        <dt>Modalidade</dt>
+        <dd>{{ a.modalidade }}</dd>
+      }
+      @if (a.plano) {
+        <dt>Plano informado</dt>
+        <dd>{{ a.plano }}</dd>
+      }
+      @if (a.motivo) {
+        <dt>Motivo registrado</dt>
+        <dd>{{ a.motivo }}</dd>
+      }
+    </dl>
+    @if (familia && a.status === 'agendada') {
+      <p class="aviso">
+        O cancelamento pelo portal exige pelo menos 24 horas de antecedência. Para um prazo menor,
+        fale com a clínica.
+      </p>
+    }
+    @if (destino; as s) {
+      <form class="confirmacao" ngNativeValidate (ngSubmit)="salvar()">
+        <h3>{{ verbos[s] }}?</h3>
+        <p>A situação deste atendimento será alterada para “{{ situacoes[s] }}”.</p>
+        @if (precisaMotivo(s, perfil)) {
+          <label>
+            Motivo da decisão
+            <textarea name="motivo" required maxlength="500" [(ngModel)]="motivo"></textarea>
+          </label>
+        }
+        <div class="acoes">
+          <button class="primaria" [disabled]="carregando">Sim, continuar</button>
+          <button
+            type="button"
+            class="secundaria"
+            [disabled]="carregando"
+            (click)="destino = undefined"
+          >
+            Voltar
+          </button>
+        </div>
+      </form>
+    } @else {
+      <div class="acoes">
+        @for (s of opcoesStatus(a, perfil); track s) {
+          <button class="secundaria" (click)="destino = s; motivo = ''">{{ verbos[s] }}</button>
+        }
+      </div>
+    }
+  </section>
+} @else {
+  <div class="ferramentas">
+    <label>
+      Situação
+      <select [(ngModel)]="filtro">
+        <option value="">Todas as situações</option>
+        @for (s of opcoes; track s) {
+          <option [value]="s">{{ situacoes[s] }}</option>
+        }
+      </select>
+    </label>
+    <button class="secundaria" [disabled]="carregando" (click)="atualizar()">
+      Atualizar lista
+    </button>
+  </div>
+  <div class="lista">
+    @for (a of lista; track a._id) {
+      <article class="item">
+        <div class="crescer">
+          <span class="estado" [attr.data-status]="a.status">{{ situacoes[a.status] }}</span>
+          <h3>{{ a.pacienteId?.nomeCompleto || 'Paciente não informado' }}</h3>
+          <p>{{ a.medicoId?.nomeCompleto }} · {{ dataHora(a.dataHora) }}</p>
+        </div>
+        <button class="secundaria" [disabled]="carregando" (click)="abrir(a)">Ver detalhes</button>
+      </article>
+    } @empty {
+      @if (!carregando && !erro) {
+        <div class="vazio">
+          Nenhum agendamento nesta lista.
+          @if (familia) {
+            <a routerLink="/buscar">Buscar atendimento</a>
+          }
+        </div>
+      }
+    }
+  </div>
+}

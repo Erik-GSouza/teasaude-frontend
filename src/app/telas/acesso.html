@@ -1,0 +1,157 @@
+<div class="publico">
+  <header class="cab-publico">
+    <a routerLink="/entrar" aria-label="TeaSaude, entrada"><tea-marca /></a>
+    <span class="portal-label">
+      <span class="ponto"></span>
+      Portal de atendimento
+    </span>
+  </header>
+  <div class="acesso-grid">
+    <aside class="boas-vindas">
+      <div>
+        <p class="sobretitulo hero-kicker">
+          <span></span>
+          TeaSaude · Cuidado em rede
+        </p>
+        <h1>
+          Cuidado em cada
+          <br />
+          <em>etapa.</em>
+        </h1>
+        <p class="hero-texto">
+          Um espaço para famílias e profissionais organizarem o atendimento de crianças e
+          adolescentes neurodivergentes.
+        </p>
+      </div>
+      <img class="jardim" src="jardim.svg" alt="" width="450" height="210" />
+    </aside>
+    <section class="form-acesso" [class.longo]="cadastro">
+      <p class="sobretitulo">{{ cadastro ? 'Primeiro acesso' : 'Área de acesso' }}</p>
+      <h2>{{ cadastro ? 'Criar conta da família' : 'Entrar no TeaSaude' }}</h2>
+      <p class="sub">
+        {{
+          cadastro
+            ? 'Cadastre o responsável e a primeira criança ou adolescente. Depois, você poderá adicionar outros pacientes.'
+            : 'Use os dados da sua conta para acessar o portal.'
+        }}
+      </p>
+      <tea-aviso [erro]="erro" [mensagem]="mensagem" [carregando]="carregando" />
+      <form ngNativeValidate (ngSubmit)="enviar()">
+        <fieldset [disabled]="carregando">
+          @if (cadastro) {
+            <legend>Dados de acesso</legend>
+          }
+          <label>
+            Nome de usuário
+            <input
+              name="usuario"
+              [(ngModel)]="nomeUsuario"
+              required
+              autocomplete="username"
+              autocapitalize="none"
+              spellcheck="false"
+              placeholder="Seu nome de usuário"
+              [attr.minlength]="cadastro ? 3 : null"
+              [attr.maxlength]="cadastro ? 30 : null"
+            />
+          </label>
+          <div class="campo-senha">
+            <label for="senha-acesso">Senha</label>
+            <span class="senha">
+              <input
+                id="senha-acesso"
+                name="senha"
+                [(ngModel)]="senha"
+                required
+                [type]="mostrar ? 'text' : 'password'"
+                [attr.autocomplete]="cadastro ? 'new-password' : 'current-password'"
+                [placeholder]="cadastro ? 'Pelo menos 8 caracteres' : 'Sua senha'"
+              />
+              <button
+                type="button"
+                class="icon-btn"
+                [attr.aria-label]="mostrar ? 'Ocultar senha' : 'Mostrar senha'"
+                [attr.aria-pressed]="mostrar"
+                (click)="mostrar = !mostrar"
+              >
+                <tea-icon nome="olho" />
+              </button>
+            </span>
+          </div>
+          @if (cadastro) {
+            <label>
+              Confirme a senha
+              <input
+                type="password"
+                name="confirmacao"
+                required
+                autocomplete="new-password"
+                [(ngModel)]="confirma"
+              />
+            </label>
+          }
+        </fieldset>
+        @if (cadastro) {
+          <fieldset [disabled]="carregando">
+            <legend>Responsável</legend>
+            <label>
+              Nome completo do responsável
+              <input
+                name="adulto"
+                required
+                minlength="3"
+                autocomplete="name"
+                [(ngModel)]="nomeContato"
+              />
+            </label>
+            <label>
+              Telefone com DDD
+              <input
+                type="tel"
+                name="telefone"
+                required
+                autocomplete="tel"
+                [(ngModel)]="telefoneContato"
+              />
+            </label>
+            <label>
+              E-mail (opcional)
+              <input type="email" name="email" autocomplete="email" [(ngModel)]="emailContato" />
+            </label>
+          </fieldset>
+          <fieldset [disabled]="carregando">
+            <legend>Primeiro paciente</legend>
+            <label>
+              Nome completo do paciente
+              <input name="crianca" required minlength="3" [(ngModel)]="nomeCompleto" />
+            </label>
+            <label>
+              Data de nascimento
+              <input
+                type="date"
+                name="nascimento"
+                required
+                [max]="hoje"
+                [(ngModel)]="dataNascimento"
+              />
+            </label>
+          </fieldset>
+        }
+        <button class="primaria larga" [disabled]="carregando">
+          {{ cadastro ? 'Criar conta' : 'Entrar' }}
+          <tea-icon nome="seta" />
+        </button>
+      </form>
+      <div class="alternativa">
+        {{ cadastro ? 'Já tem uma conta?' : 'Primeiro acesso da família?' }}
+        <a [routerLink]="cadastro ? '/entrar' : '/criar-conta'">
+          {{ cadastro ? 'Voltar ao login' : 'Criar conta' }}
+        </a>
+      </div>
+    </section>
+  </div>
+  <footer class="publico-rodape">
+    <span>TeaSaude</span>
+    <span>Portal de cuidado e atendimento</span>
+  </footer>
+</div>

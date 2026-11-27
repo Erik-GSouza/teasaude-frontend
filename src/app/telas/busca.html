@@ -1,0 +1,171 @@
+<div class="cab-pagina">
+  <p class="sobretitulo">Atendimento</p>
+  <h1 id="titulo-busca" tabindex="-1">Buscar atendimento</h1>
+  <p>Encontre um profissional, veja os horários livres e envie sua solicitação.</p>
+</div>
+<tea-aviso [erro]="erro" [mensagem]="mensagem" [carregando]="carregando" />
+@if (!enviado) {
+  <ol class="passos" aria-label="Etapas da solicitação">
+    <li [class.atual]="passo === 1">1. Profissional</li>
+    <li [class.atual]="passo === 2">2. Horário e paciente</li>
+    <li [class.atual]="passo === 3">3. Revisão</li>
+  </ol>
+}
+@if (passo === 1) {
+  <label class="filtro">
+    Buscar por nome, especialidade ou clínica
+    <input type="search" [(ngModel)]="filtro" placeholder="Ex.: Fonoaudiologia" />
+  </label>
+  <div class="lista">
+    @for (m of lista; track m._id) {
+      <article class="item">
+        <span class="medalha"><tea-icon nome="profissional" /></span>
+        <div class="crescer">
+          <p class="sobretitulo">{{ m.especialidade }}</p>
+          <h3>{{ m.nomeCompleto }}</h3>
+          <p>{{ instituicao(m.instituicaoId) }}</p>
+        </div>
+        <button class="secundaria" [disabled]="carregando" (click)="abrir(m)">
+          Ver horários
+          <tea-icon nome="seta" />
+        </button>
+      </article>
+    } @empty {
+      @if (!carregando && !erro) {
+        <div class="vazio">Nenhum profissional encontrado. Tente outro nome ou especialidade.</div>
+      }
+    }
+  </div>
+  @if (erro) {
+    <button class="secundaria" (click)="atualizar()">Recarregar busca</button>
+  }
+}
+@if (passo === 2 && medico) {
+  <button class="link" [disabled]="carregando" (click)="voltar()">
+    ← Voltar aos profissionais
+  </button>
+  <section class="painel">
+    <p class="sobretitulo">{{ medico.especialidade }}</p>
+    <h2 id="titulo-profissional" tabindex="-1">{{ medico.nomeCompleto }}</h2>
+    <p>{{ instituicao(medico.instituicaoId) }}</p>
+    @if (medico.orientacoesDocumentos) {
+      <p>
+        <strong>Documentos e orientações:</strong>
+        {{ medico.orientacoesDocumentos }}
+      </p>
+    }
+  </section>
+  @if (!carregando && !pacientes.length) {
+    <p class="aviso">
+      Adicione um paciente em
+      <a routerLink="/pacientes">Minha família</a>
+      para solicitar atendimento.
+    </p>
+  }
+  @if (horarios.length && pacientes.length) {
+    <form ngNativeValidate class="painel formulario" (ngSubmit)="revisar()">
+      <label>
+        Para qual paciente?
+        <select name="paciente" required [(ngModel)]="paciente">
+          <option value="">Escolha um paciente</option>
+          @for (p of pacientes; track p._id) {
+            <option [value]="p._id">{{ p.nomeCompleto }}</option>
+          }
+        </select>
+      </label>
+      <fieldset>
+        <legend>Horários disponíveis</legend>
+        <div class="opcoes">
+          @for (h of horarios; track h._id) {
+            <label class="opcao">
+              <input
+                type="radio"
+                name="horario"
+                required
+                [(ngModel)]="selecionado"
+                [value]="h._id"
+              />
+              {{ dataHora(h.inicio) }} até {{ hora(h.fim) }}
+            </label>
+          }
+        </div>
+      </fieldset>
+      @if (medico.modalidades?.length) {
+        <label>
+          Modalidade (opcional)
+          <select name="modalidade" [(ngModel)]="modalidade">
+            <option value="">Não informar</option>
+            @for (m of medico.modalidades; track $index) {
+              <option>{{ m }}</option>
+            }
+          </select>
+        </label>
+      }
+      <label>
+        Plano (opcional)
+        <input name="plano" [(ngModel)]="plano" />
+      </label>
+      <label>
+        Motivo (opcional)
+        <textarea name="motivo" rows="2" [(ngModel)]="motivo"></textarea>
+      </label>
+      <button class="primaria" [disabled]="carregando">
+        Revisar solicitação
+        <tea-icon nome="seta" />
+      </button>
+    </form>
+  }
+  @if (!carregando && !horarios.length && !erro) {
+    <p class="vazio">
+      Sem horários disponíveis para este profissional. Você pode escolher outro ou consultar
+      novamente depois.
+    </p>
+  }
+  @if (erro) {
+    <button class="secundaria" (click)="abrir(medico)">Atualizar horários</button>
+  }
+}
+@if (passo === 3 && medico && slot) {
+  <section class="painel formulario">
+    <p class="sobretitulo">Antes de enviar</p>
+    <h2 id="titulo-revisao" tabindex="-1">Revise sua solicitação</h2>
+    <dl>
+      <dt>Paciente</dt>
+      <dd>{{ nomePaciente }}</dd>
+      <dt>Profissional</dt>
+      <dd>{{ medico.nomeCompleto }} · {{ medico.especialidade }}</dd>
+      <dt>Instituição</dt>
+      <dd>{{ instituicao(medico.instituicaoId) }}</dd>
+      <dt>Horário</dt>
+      <dd>{{ dataHora(slot.inicio) }} até {{ hora(slot.fim) }}</dd>
+      @if (modalidade) {
+        <dt>Modalidade</dt>
+        <dd>{{ modalidade }}</dd>
+      }
+      @if (plano) {
+        <dt>Plano informado</dt>
+        <dd>{{ plano }}</dd>
+      }
+      @if (motivo) {
+        <dt>Motivo</dt>
+        <dd>{{ motivo }}</dd>
+      }
+    </dl>
+    <p class="aviso">A instituição ainda precisa confirmar o atendimento.</p>
+    <div class="acoes">
+      <button class="secundaria" [disabled]="carregando" (click)="voltar()">Alterar escolha</button>
+      <button class="primaria" [disabled]="carregando" (click)="enviar()">
+        Enviar solicitação
+      </button>
+    </div>
+  </section>
+}
+@if (enviado) {
+  <section class="painel sucesso" role="status">
+    <span class="medalha"><tea-icon nome="agenda" /></span>
+    <p class="sobretitulo">Aguardando resposta</p>
+    <h2 id="titulo-enviada" tabindex="-1">Solicitação enviada</h2>
+    <p>Acompanhe a decisão da instituição em Agendamentos.</p>
+    <a class="primaria" routerLink="/agendamentos">Ver meus agendamentos</a>
+  </section>
+}

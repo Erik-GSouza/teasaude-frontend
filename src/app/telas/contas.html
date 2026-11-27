@@ -1,0 +1,130 @@
+<div class="cab-pagina">
+  <p class="sobretitulo">Administração</p>
+  <h1>Contas de acesso</h1>
+  <p>
+    Gerencie as contas que administram o portal e as instituições. O acesso dos médicos fica em
+    Profissionais.
+  </p>
+</div>
+<tea-aviso [erro]="erro" [mensagem]="mensagem" [carregando]="carregando" />
+<div class="seletor" aria-label="Tipo de conta">
+  <button [disabled]="carregando" [attr.aria-pressed]="gestor" (click)="trocar('gestores')">
+    Gestores
+  </button>
+  <button [disabled]="carregando" [attr.aria-pressed]="!gestor" (click)="trocar('admins')">
+    Administradores
+  </button>
+</div>
+<div class="linha-titulo">
+  <h2>{{ gestor ? 'Gestores' : 'Administradores' }}</h2>
+  <button class="primaria" [disabled]="carregando" (click)="editar()">
+    <tea-icon nome="mais" />
+    Nova conta
+  </button>
+</div>
+@if (modo === 'editar') {
+  <form ngNativeValidate class="painel formulario" (ngSubmit)="salvar()">
+    <h2>{{ alvo ? 'Editar conta de ' : 'Criar conta de ' }}{{ descricao }}</h2>
+    <label>
+      Nome de usuário
+      <input
+        id="nome-conta"
+        name="usuario"
+        [(ngModel)]="nome"
+        required
+        maxlength="30"
+        autocomplete="off"
+      />
+    </label>
+    @if (!alvo) {
+      <label>
+        Senha inicial
+        <input
+          name="senha"
+          type="password"
+          required
+          [(ngModel)]="senha"
+          autocomplete="new-password"
+        />
+      </label>
+    }
+    @if (gestor) {
+      <label>
+        Instituição
+        <input
+          name="instituicao"
+          required
+          [(ngModel)]="instituicaoId"
+          list="instituicoes-contas"
+          placeholder="Selecione ou informe o ID da instituição"
+        />
+        <datalist id="instituicoes-contas">
+          @for (i of opcoes; track i[0]) {
+            <option [value]="i[0]">{{ i[1] }}</option>
+          }
+        </datalist>
+      </label>
+    }
+    <div class="acoes">
+      <button class="primaria" [disabled]="carregando">Salvar conta</button>
+      <button
+        type="button"
+        class="secundaria"
+        [disabled]="carregando"
+        (click)="modo = ''; senha = ''"
+      >
+        Voltar
+      </button>
+    </div>
+  </form>
+}
+@if (modo === 'situacao' && alvo) {
+  <section class="confirmacao">
+    <h3>{{ alvo.ativo ? 'Desativar' : 'Reativar' }} o acesso de {{ alvo.nomeUsuario }}?</h3>
+    <p>
+      {{
+        alvo.ativo
+          ? 'A pessoa deixará de conseguir entrar.'
+          : 'A pessoa voltará a poder entrar com a mesma conta.'
+      }}
+    </p>
+    <div class="acoes">
+      <button class="primaria" [disabled]="carregando" (click)="alterar()">
+        Confirmar alteração
+      </button>
+      <button class="secundaria" (click)="modo = ''">Voltar</button>
+    </div>
+  </section>
+}
+<div class="ferramentas">
+  <label>
+    Pesquisar por usuário
+    <input type="search" [(ngModel)]="filtro" />
+  </label>
+  <button class="secundaria" [disabled]="carregando" (click)="atualizar()">Atualizar lista</button>
+</div>
+<div class="lista">
+  @for (u of visiveis; track u._id) {
+    <article class="item">
+      <div class="crescer">
+        <span class="estado">{{ u.ativo ? 'Ativa' : 'Inativa' }}</span>
+        <h3>{{ u.nomeUsuario }}</h3>
+        @if (u._id === api.usuario()?._id) {
+          <p>Sua conta</p>
+        }
+      </div>
+      <div class="acoes">
+        <button class="secundaria" [disabled]="carregando" (click)="editar(u)">Editar</button>
+        @if (u._id !== api.usuario()?._id) {
+          <button class="link" [disabled]="carregando" (click)="modo = 'situacao'; alvo = u">
+            {{ u.ativo ? 'Desativar' : 'Reativar' }}
+          </button>
+        }
+      </div>
+    </article>
+  } @empty {
+    @if (!erro && !carregando) {
+      <p class="vazio">Nenhuma conta encontrada.</p>
+    }
+  }
+</div>
